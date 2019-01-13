@@ -18,14 +18,18 @@ fluid.defaults("bubbles.mainWindow", {
     showOnReady: true,
 
     windowOptions: {
-        title: "Bubbles"
+        title: "Bubbles",
+        backgroundColor: "#000000"
     },
 
     model: {
         url: {
             expander: {
                 funcName: "fluid.stringTemplate",
-                args: ["%url/src/renderer-process/html/main-window.html", "{app}.env.appRoot"]
+                args: [
+                    "%url/src/renderer-process/html/main-window.html",
+                    "{app}.env.appRoot"
+                ]
             }
         },
 
@@ -35,31 +39,33 @@ fluid.defaults("bubbles.mainWindow", {
         },
 
         // TODO: Move to infusion-electron
-        maximized: false
+        isMaximized: false
     },
 
     modelListeners: {
         // TODO: Move to infusion-electron
-        maximized: {
-            "this": "{that}.win",
-            method: "maximize",
-            args: ["{change}.value"]
+        isMaximized: {
+            funcName: "bubbles.mainWindow.handleMaximizedChange",
+            args: ["{that}.win", "{change}"]
         }
     },
 
     listeners: {
+        // This should help avoid flickering.
         "onReadyToShow.maximize": {
-            changePath: "maximize",
+            priority: "before:show",
+            changePath: "isMaximized",
             value: true
         }
     }
 });
 
 // TODO: Move to infusion-electron
-bubbles.mainWindow.handleMaximizedChange = function (that) {
-    if (maximized) {
-        that.win.maximize();
-    } else {
-        that.win.unmaximize();
+bubbles.mainWindow.handleMaximizedChange = function (win, change) {
+    if (change.value) {
+        win.maximize();
+    } else if (change.oldValue) {
+        // Only unmaximize if we were previously maximized.
+        win.unmaximize();
     }
 };
