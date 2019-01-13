@@ -21,7 +21,9 @@
     "main": "main.js",
     "devDependencies": {
         "electron": "4.0.1",
-        "electron-packager": "13.0.1"
+        "electron-packager": "13.0.1",
+        "grunt": "1.0.3",
+        "gpii-grunt-lint-all": "1.0.5"
     },
     "dependencies": {
         "infusion": "3.0.0-dev.20181204T213346Z.2ca90f6e6",
