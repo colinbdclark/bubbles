@@ -1,0 +1,26 @@
+{
+    "name": "bubbles",
+    "version": "0.1.0",
+    "author": "Colin Clark",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/colinbdclark/bubbles.git"
+    },
+    "bugs": "http://github.com/colinbdclark/bubbles/issues",
+    "license": "MIT",
+    "keywords": [
+        "video",
+        "art",
+        "synthesis",
+        "compositing",
+        "authoring",
+        "webgl"
+    ],
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "infusion": "3.0.0-dev.20181204T213346Z.2ca90f6e6",
+        "aconite": "0.9.0",
+        "flocking": "2.0.0-dev.20190101T211732Z.efbf6e2",
+        "infusion-electron": "0.5.0"
+    }
+}
