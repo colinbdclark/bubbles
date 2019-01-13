@@ -1,0 +1,10 @@
+{
+    type: "bubbles.standardApp",
+    options: {
+        gradeNames: "bubbles.app"
+    },
+    require: [
+        "../main-process/main-window.js",
+        "../main-process/app.js"
+    ]
+}

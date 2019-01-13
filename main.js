@@ -6,9 +6,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 */
 "use strict";
 
-var fluid = require("infusion");
-require("./src/main-process/main-window.js");
-require("./src/main-process/app.js");
-
-var bubbles = fluid.registerNamespace("bubbles");
-bubbles.app();
+var kettle = require("kettle");
+kettle.config.loadConfig({
+    configName: "bubbles-config",
+    configPath: "./src/configs"
+});
