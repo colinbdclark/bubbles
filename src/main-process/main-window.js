@@ -8,8 +8,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 var fluid = require("infusion"),
-    electron = require("infusion-electron"),
     bubbles = fluid.registerNamespace("bubbles");
+require("infusion-electron");
 
 fluid.defaults("bubbles.mainWindow", {
     gradeNames: ["electron.browserWindow"],
