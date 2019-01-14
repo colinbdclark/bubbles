@@ -9,7 +9,6 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 var fluid = require("infusion"),
     bubbles = fluid.registerNamespace("bubbles");
-require("infusion-electron");
 
 fluid.defaults("bubbles.mainWindow", {
     gradeNames: ["electron.browserWindow"],

@@ -67,5 +67,3 @@ bubbles.tests.mainWindowTester.maximized = function (mainWindow) {
     jqUnit.assertTrue("The main window is maximized",
         mainWindow.win.isMaximized());
 };
-
-fluid.test.runTests("bubbles.tests.mainWindowTestEnvironment");

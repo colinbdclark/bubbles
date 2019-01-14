@@ -1,0 +1,17 @@
+{
+    type: "bubbles.testing",
+    options: {
+        gradeNames: "bubbles.testApp"
+    },
+
+    require: [
+        "%bubbles/tests/utils/test-app.js",
+        "%bubbles/tests/utils/test-runner.js",
+
+        "%bubbles/tests/js/main-window-tests.js"
+    ],
+
+    mergeConfigs: [
+        "bubbles-requires.json5"
+    ]
+}

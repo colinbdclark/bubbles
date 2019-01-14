@@ -1,0 +1,8 @@
+{
+    require: [
+        "infusion-electron",
+        "%bubbles/index.js",
+        "%bubbles/src/main-process/main-window.js",
+        "%bubbles/src/main-process/app.js"
+    ]
+}
