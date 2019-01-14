@@ -8,7 +8,6 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 var fluid = require("infusion");
-require("infusion-electron");
 
 fluid.defaults("bubbles.app", {
     gradeNames: "electron.app",

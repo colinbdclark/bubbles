@@ -4,7 +4,18 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Electron App",
+            "name": "Unit Tests",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "windows": {
+              "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
+            "args" : ["tests/all-tests.js"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "App",
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
             "windows": {

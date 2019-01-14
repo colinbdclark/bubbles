@@ -1,0 +1,9 @@
+{
+    type: "bubbles.standard",
+    options: {
+        gradeNames: "bubbles.app"
+    },
+    mergeConfigs: [
+        "bubbles-requires.json5"
+    ]
+}

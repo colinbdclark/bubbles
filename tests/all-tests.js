@@ -6,9 +6,12 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 */
 "use strict";
 
-var kettle = require("kettle");
+var fluid = require("infusion"),
+    kettle = require("kettle");
+
+fluid.loadTestingSupport();
 
 kettle.config.loadConfig({
-    configName: "bubbles",
+    configName: "testing",
     configPath: "./src/configs"
 });
