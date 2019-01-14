@@ -1,5 +1,5 @@
 {
-    type: "bubbles.standardApp",
+    type: "bubbles.standard",
     options: {
         gradeNames: "bubbles.app"
     },

@@ -7,7 +7,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 var kettle = require("kettle");
+
 kettle.config.loadConfig({
-    configName: "bubbles-config",
+    configName: "bubbles",
     configPath: "./src/configs"
 });
