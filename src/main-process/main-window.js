@@ -13,12 +13,15 @@ var fluid = require("infusion"),
 fluid.defaults("bubbles.mainWindow", {
     gradeNames: ["electron.browserWindow"],
 
-    showOnCreate: false,
-    showOnReady: true,
-
     windowOptions: {
         title: "Bubbles",
-        backgroundColor: "#000000"
+        backgroundColor: "#000000",
+        bounds: {
+            width: 1280,
+            height: 720,
+            x: 0,
+            y: 0
+        }
     },
 
     model: {
@@ -30,11 +33,6 @@ fluid.defaults("bubbles.mainWindow", {
                     "{app}.env.appRoot"
                 ]
             }
-        },
-
-        bounds: {
-            width: 1280,
-            height: 720
         },
 
         // TODO: Move to infusion-electron
