@@ -37,3 +37,7 @@
 .bubbles-panel.bubbles-panel-hidden .bubbles-panel-showHide:focus {
     border-color: #fff;
 }
+
+.bubbles-panel.bubbles-panel-hidden .bubbles-panel-showHide.bubbles-panel-showHide-hidden {
+    display: none;
+}

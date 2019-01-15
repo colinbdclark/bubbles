@@ -16,8 +16,12 @@ fluid.defaults("bubbles.panel", {
 
     modelListeners: {
         isShowing: {
-            funcName: "bubbles.panel.updateVisibility",
-            args: ["{that}", "{change}.value"]
+            funcName: "bubbles.utils.removeConditionalClass",
+            args: [
+                "{that}.container",
+                "{change}.value",
+                "{that}.options.styles.hidden"
+            ]
         }
     },
 
@@ -33,12 +37,7 @@ fluid.defaults("bubbles.panel", {
         }
     },
 
-    classes: {
+    styles: {
         hidden: "bubbles-panel-hidden"
     }
 });
-
-bubbles.panel.updateVisibility = function (that, isShowing) {
-    var methodName = isShowing ? "removeClass" : "addClass";
-    that.container[methodName](that.options.classes.hidden);
-};
