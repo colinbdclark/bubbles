@@ -18,9 +18,9 @@ window.electron = {
         require: window.require,
         define: window.define,
         module: window.module
-}
+    }
 };
 
-window.require = undefined;
-window.define = undefined;
-window.module = undefined;
+delete window.require;
+delete window.define;
+delete window.module;

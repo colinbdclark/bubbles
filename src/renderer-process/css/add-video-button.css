@@ -12,3 +12,15 @@
     outline: none;
     fill: #fff;
 }
+
+.bubbles-add-video-icon-hidden {
+    opacity: 0;
+}
+
+.bubbles-add-video-icon-hidden:hover {
+    opacity: 1;
+}
+
+.bubbles-add-video-icon-hidden:focus {
+    opacity: 1;
+}

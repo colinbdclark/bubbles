@@ -30,7 +30,7 @@ fluid.defaults("bubbles.showHideButton", {
             }
         },
         {
-            nameSpace: "shouldHide",
+            namespace: "shouldHide",
             target: "isHidden",
             singleTransform: {
                 type: "fluid.transforms.free",

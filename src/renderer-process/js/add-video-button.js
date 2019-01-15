@@ -7,8 +7,26 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.addVideoButton", {
     gradeNames: "fluid.viewComponent",
+
+    model: {
+        isHidden: false
+    },
+
+    modelListeners: {
+        isHidden: {
+            namespace: "addHiddenClass",
+            funcName: "bubbles.utils.addConditionalClass",
+            args: [
+                "{that}.dom.addIcon",
+                "{that}.model.isHidden",
+                "{that}.options.styles.hidden"
+            ]
+        }
+    },
 
     invokers: {
         handleKeyPress: {
@@ -39,12 +57,6 @@ fluid.defaults("bubbles.addVideoButton", {
             "this": "{that}.dom.addIcon",
             method: "keypress",
             args: ["{that}.handleKeyPress"]
-        },
-
-        "onAddVideo.log": {
-            "this": "console",
-            method: "log",
-            args: "onAddVideo"
         }
     },
 
@@ -54,6 +66,10 @@ fluid.defaults("bubbles.addVideoButton", {
 
     strings: {
         iconAltText: "Add a Video"
+    },
+
+    styles: {
+        hidden: "bubbles-add-video-icon-hidden"
     },
 
     markup: {

@@ -7,12 +7,24 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.videoLayerView", {
     gradeNames: "fluid.viewComponent",
 
-    model: {
-        videoURL: "{video}.model.url"
-    },
+    modelRelay: [
+        {
+            namespace: "mapVideoURLToButtonVisibility",
+            backward: {
+                excludeSource: "*"
+            },
+            source: "{video}.model.url",
+            target: "{addVideoButton}.model.isHidden",
+            singleTransform: {
+                type: "fluid.transforms.stringToBoolean"
+            }
+        }
+    ],
 
     components: {
         video: {
@@ -20,12 +32,7 @@ fluid.defaults("bubbles.videoLayerView", {
         },
 
         player: {
-            type: "aconite.videoPlayer.nativeElement",
-            options: {
-                components: {
-                    video: "{videoLayerView}.video"
-                }
-            }
+            type: "bubbles.videoPlayer"
         },
 
         addVideoButton: {

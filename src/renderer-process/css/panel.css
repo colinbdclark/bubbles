@@ -9,6 +9,8 @@
 
 /* TODO: This will likely cause issues with the panel's contents
 still being keyboard focusable. */
+/* We'll probably need to disable, hide, or remove the tabindex
+from children of the panel */
 .bubbles-panel.bubbles-panel-hidden {
     position: absolute;
     top: 0;
