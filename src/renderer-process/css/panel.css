@@ -38,6 +38,12 @@
     border-color: #fff;
 }
 
-.bubbles-panel.bubbles-panel-hidden .bubbles-panel-showHide.bubbles-panel-showHide-hidden {
-    display: none;
+.bubbles-panel-hidden .bubbles-panel-showHide-hidden {
+    opacity: 0;
+    transition: all 0.25s ease-in;
+}
+
+.bubbles-panel-hidden .bubbles-panel-showHide-hidden:focus {
+    opacity: 1;
+    transition: all 0.25s ease-in;
 }
