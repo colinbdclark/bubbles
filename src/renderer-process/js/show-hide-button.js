@@ -7,24 +7,41 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.showHideButton", {
     gradeNames: "fluid.viewComponent",
 
     model: {
+        isMouseIdle: "{idleMouseNotifier}.model.isMouseIdle",
         isShowing: true,
         label: "{that}.options.strings.hide"
     },
 
-    modelRelay: {
-        namespace: "mapLabelToIsShowing",
-        target: "label",
-        singleTransform: {
-            type: "fluid.transforms.condition",
-            condition: "{that}.model.isShowing",
-            "true": "{that}.options.strings.hide",
-            "false": "{that}.options.strings.show"
+    modelRelay: [
+        {
+            namespace: "mapLabelToIsShowing",
+            target: "label",
+            singleTransform: {
+                type: "fluid.transforms.condition",
+                condition: "{that}.model.isShowing",
+                "true": "{that}.options.strings.hide",
+                "false": "{that}.options.strings.show"
+            }
+        },
+        {
+            nameSpace: "shouldHide",
+            target: "isHidden",
+            singleTransform: {
+                type: "fluid.transforms.free",
+                func: "bubbles.showHideButton.shouldHide",
+                args: [
+                    "{that}.model.isShowing",
+                    "{that}.model.isMouseIdle"
+                ]
+            }
         }
-    },
+    ],
 
     modelListeners: {
         label: {
@@ -32,6 +49,15 @@ fluid.defaults("bubbles.showHideButton", {
             "this": "{that}.dom.button",
             method: "text",
             args: ["{change}.value"]
+        },
+
+        isHidden: {
+            funcName: "bubbles.utils.addConditionalClass",
+            args: [
+                "{that}.dom.button",
+                "{change}.value",
+                "{that}.options.styles.hidden"
+            ]
         }
     },
 
@@ -62,6 +88,10 @@ fluid.defaults("bubbles.showHideButton", {
         button: ".bubbles-panel-showHide"
     },
 
+    styles: {
+        hidden: "bubbles-panel-showHide-hidden"
+    },
+
     strings: {
         hide: "Hide",
         show: "Show"
@@ -85,4 +115,8 @@ bubbles.showHideButton.render = function (that) {
 
 bubbles.showHideButton.updateIsShowing = function (that) {
     that.applier.change("isShowing", !that.model.isShowing);
+};
+
+bubbles.showHideButton.shouldHide = function (isShowing, isMouseIdle) {
+    return !isShowing && isMouseIdle;
 };

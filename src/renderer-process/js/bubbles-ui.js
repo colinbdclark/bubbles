@@ -14,10 +14,20 @@ fluid.defaults("bubbles.ui", {
         compositionPanel: {
             type: "bubbles.compositionPanel",
             container: "{that}.options.selectors.compositionPanel"
+        },
+
+        stageView: {
+            type: "bubbles.stageView",
+            container: "{that}.dom.stageView"
+        },
+
+        idleMouseNotifier: {
+            type: "bubbles.idleMouseNotifier"
         }
     },
 
     selectors: {
-        compositionPanel: ".bubbles-composition-panel"
+        compositionPanel: ".bubbles-composition-panel",
+        stageView: ".bubbles-stage"
     }
 });

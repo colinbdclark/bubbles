@@ -7,8 +7,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
-var fluid = require("infusion"),
-    bubbles = fluid.registerNamespace("bubbles");
+var fluid = require("infusion");
+fluid.registerNamespace("bubbles");
 
 fluid.defaults("bubbles.testApp", {
     gradeNames: "electron.app",
