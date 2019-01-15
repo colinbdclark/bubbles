@@ -10,6 +10,10 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.videoLayerView", {
     gradeNames: "fluid.viewComponent",
 
+    model: {
+        videoURL: "{video}.model.url"
+    },
+
     components: {
         video: {
             type: "aconite.video"

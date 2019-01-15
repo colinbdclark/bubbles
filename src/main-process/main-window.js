@@ -21,6 +21,9 @@ fluid.defaults("bubbles.mainWindow", {
             height: 720,
             x: 0,
             y: 0
+        },
+        webPreferences: {
+            nodeIntegration: true
         }
     },
 
