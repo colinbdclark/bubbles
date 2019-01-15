@@ -1,0 +1,13 @@
+.bubbles-layer-card {
+    height: 6.25%;
+    padding: 0.5em;
+    background-color: #aaa;
+    border-bottom: 0.25em solid #ddd;
+}
+
+.bubbles-layer-card video {
+    height: 5em;
+    width: 8.9em;
+    border: 0.25em solid #555;
+    border-radius: 1em;
+}

@@ -18,7 +18,14 @@ fluid.defaults("bubbles.ui", {
 
         stageView: {
             type: "bubbles.stageView",
-            container: "{that}.dom.stageView"
+            container: "{that}.dom.stage"
+        },
+
+        // TODO: Soon this will become a set of dynamic components
+        // in a layerStackView component?
+        videoLayerView: {
+            type: "bubbles.videoLayerView",
+            container: "{that}.dom.layerStack"
         },
 
         idleMouseNotifier: {
@@ -28,6 +35,7 @@ fluid.defaults("bubbles.ui", {
 
     selectors: {
         compositionPanel: ".bubbles-composition-panel",
-        stageView: ".bubbles-stage"
+        stage: ".bubbles-stage",
+        layerStack: ".bubbles-layer-stack"
     }
 });

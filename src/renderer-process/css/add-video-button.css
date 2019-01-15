@@ -1,0 +1,14 @@
+.bubbles-add-video-icon {
+    position: absolute;
+    left: 2.7em;
+    padding-top: 0.75em;
+    fill: #555;
+    z-index: 1;
+    height: 5em;
+    width: 5em;
+}
+
+.bubbles-add-video-icon:focus {
+    outline: none;
+    fill: #fff;
+}
