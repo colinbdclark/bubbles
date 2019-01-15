@@ -3,10 +3,35 @@
     <head>
         <meta charset="UTF-8" />
         <title>Bubbles</title>
-        <link href="../../../node-modules/normalize.css/normalize.css" rel="stylesheet">
+        <link href="../../../node_modules/normalize.css/normalize.css" rel="stylesheet">
         <link href="../css/bubbles.css" rel="stylesheet">
+        <link href="../css/panel.css" rel="stylesheet">
+
+        <script src="../../../node_modules/infusion/dist/infusion-framework.js"></script>
+        <script src="../../../node_modules/flocking/dist/flocking-base.js"></script>
+        <!-- TODO: Add other Flocking files as needed. -->
+        <script src="../../../node_modules/bergson/dist/bergson-only.js"></script>
+        <script src="../../../node_modules/aconite/dist/aconite-only.js"></script>
+
+        <script src="../js/show-hide-button.js"></script>
+        <script src="../js/panel.js"></script>
+        <script src="../js/composition-panel.js"></script>
+        <script src="../js/bubbles-ui.js"></script>
     </head>
     <body>
+        <div class="bubbles-ui">
+            <div class="bubbles-stage">
+                <div class="aconite-video-container">
+                    <canvas class="aconite-animator-canvas" width="1920" height="1080"></canvas>
+                </div>
+            </div>
 
+            <div class="bubbles-composition-panel bubbles-panel">
+            </div>
+        </div>
+
+        <script>
+            bubblesUI = bubbles.ui(".bubbles-ui");
+        </script>
     </body>
 </html>
