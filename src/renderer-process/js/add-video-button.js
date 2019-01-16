@@ -17,15 +17,22 @@ fluid.defaults("bubbles.addVideoButton", {
     },
 
     modelListeners: {
-        isHidden: {
-            namespace: "addHiddenClass",
-            funcName: "bubbles.utils.addConditionalClass",
-            args: [
-                "{that}.dom.addIcon",
-                "{that}.model.isHidden",
-                "{that}.options.styles.hidden"
-            ]
-        }
+        isHidden: [
+            {
+                namespace: "addHiddenClass",
+                funcName: "bubbles.utils.addConditionalClass",
+                args: [
+                    "{that}.dom.addIcon",
+                    "{change}.value",
+                    "{that}.options.styles.hidden"
+                ]
+            },
+            {
+                namespace: "blur",
+                funcName: "bubbles.utils.blurWhenHidden",
+                args: ["{that}.dom.addIcon", "{change}.value"]
+            }
+        ]
     },
 
     invokers: {

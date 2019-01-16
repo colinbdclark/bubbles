@@ -27,12 +27,14 @@ fluid.defaults("bubbles.videoLayerView", {
     ],
 
     components: {
-        video: {
-            type: "aconite.video"
+        glRenderer: "{stageView}.glRenderer",
+
+        videoLayer: {
+            type: "bubbles.videoLayer"
         },
 
-        player: {
-            type: "bubbles.videoPlayer"
+        video: {
+            type: "aconite.video"
         },
 
         addVideoButton: {

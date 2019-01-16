@@ -51,14 +51,22 @@ fluid.defaults("bubbles.showHideButton", {
             args: ["{change}.value"]
         },
 
-        isHidden: {
-            funcName: "bubbles.utils.addConditionalClass",
-            args: [
-                "{that}.dom.button",
-                "{change}.value",
-                "{that}.options.styles.hidden"
-            ]
-        }
+        isHidden: [
+            {
+                namespace: "addHiddenStyle",
+                funcName: "bubbles.utils.addConditionalClass",
+                args: [
+                    "{that}.dom.button",
+                    "{change}.value",
+                    "{that}.options.styles.hidden"
+                ]
+            },
+            {
+                namespace: "blur",
+                funcName: "bubbles.utils.blurWhenHidden",
+                args: ["{that}.dom.button", "{change}.value"]
+            }
+        ]
     },
 
     events: {

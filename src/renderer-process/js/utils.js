@@ -18,3 +18,9 @@ utils.addConditionalClass = function (jEl, condition, className) {
     var methodName = condition ? "addClass" : "removeClass";
     jEl[methodName](className);
 };
+
+utils.blurWhenHidden = function (jEl, isHidden) {
+    if (isHidden) {
+        jEl.blur();
+    }
+};

@@ -25,7 +25,24 @@ fluid.defaults("bubbles.stageView", {
         }
     },
 
+    components: {
+        compositor: {
+            type: "bubbles.compositor",
+            container: "{that}.dom.stageContainer"
+        },
+
+
+        glRenderer: {
+            type: "bubbles.glRenderer",
+            container: "{compositor}.dom.stage"
+        },
+    },
+
     styles: {
         mouseHidden: "bubbles-stage-mouseHidden"
+    },
+
+    selectors: {
+        stageContainer: ".aconite-video-container"
     }
 });
