@@ -1,8 +1,8 @@
 .bubbles-add-video-icon {
     position: absolute;
     left: 2.7em;
-    padding-top: 0.75em;
-    fill: #555;
+    padding-top: 0.9em;
+    fill: #ddd;
     z-index: 1;
     height: 5em;
     width: 5em;
@@ -11,6 +11,10 @@
 .bubbles-add-video-icon:focus {
     outline: none;
     fill: #fff;
+}
+
+.bubbles-add-video-icon:focus ~ .bubbles-layer-card video {
+    border-color: #fff;
 }
 
 .bubbles-add-video-icon-hidden {
