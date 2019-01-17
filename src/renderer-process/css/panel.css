@@ -1,0 +1,18 @@
+.bubbles-panel {
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* TODO: This will likely cause issues with the panel's contents
+still being keyboard focusable. */
+/* We'll probably need to disable, hide, or remove the tabindex
+from children of the panel */
+.bubbles-panel.bubbles-panel-hidden {
+    position: absolute;
+    top: 0;
+    left: -50%;
+}

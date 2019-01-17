@@ -3,10 +3,51 @@
     <head>
         <meta charset="UTF-8" />
         <title>Bubbles</title>
-        <link href="../../../node-modules/normalize.css/normalize.css" rel="stylesheet">
+        <link href="../../../node_modules/normalize.css/normalize.css" rel="stylesheet">
         <link href="../css/bubbles.css" rel="stylesheet">
+        <link href="../css/panel.css" rel="stylesheet">
+        <link href="../css/show-hide-button.css" rel="stylesheet">
+        <link href="../css/stage.css" rel="stylesheet">
+        <link href="../css/video-layer.css" rel="stylesheet">
+        <link href="../css/add-video-button.css" rel="stylesheet">
+
+        <script src="../js/namespace-electron-globals.js"></script>
+        <script src="../../../node_modules/infusion/dist/infusion-framework.js"></script>
+        <script src="../../../node_modules/flocking/dist/flocking-base.js"></script>
+        <!-- TODO: Add other Flocking files as needed. -->
+        <script src="../../../node_modules/bergson/dist/bergson-only.js"></script>
+        <script src="../../../node_modules/aconite/dist/aconite-only.js"></script>
+
+        <script src="../js/utils.js"></script>
+        <script src="../js/idle-mouse-notifier.js"></script>
+        <script src="../js/show-hide-button.js"></script>
+        <script src="../js/panel.js"></script>
+        <script src="../js/composition-panel.js"></script>
+        <script src="../js/video-player.js"></script>
+        <script src="../js/video-layer.js"></script>
+        <script src="../js/video-layer-view.js"></script>
+        <script src="../js/add-video-button.js"></script>
+        <script src="../js/open-file-dialog.js"></script>
+        <script src="../js/gl-renderer.js"></script>
+        <script src="../js/compositor.js"></script>
+        <script src="../js/stage-view.js"></script>
+        <script src="../js/bubbles-ui.js"></script>
     </head>
     <body>
+        <div class="bubbles-ui">
+            <div class="bubbles-stage">
+                <div class="aconite-video-container">
+                    <canvas class="aconite-animator-canvas" width="1280" height="720"></canvas>
+                </div>
+            </div>
 
+            <div class="bubbles-composition-panel bubbles-panel">
+                <div class="bubbles-layer-stack"></div>
+            </div>
+        </div>
+
+        <script>
+            bubblesUI = bubbles.ui(".bubbles-ui");
+        </script>
     </body>
 </html>

@@ -1,0 +1,22 @@
+/* TODO: We want the layer stack to be semi-transparent,
+   but the video within it to be fully opaque. Will this require
+   absolute positioning, or will rbga background values work? */
+.bubbles-layer-stack {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-bottom: 0.1em solid #ddd;
+}
+
+.bubbles-layer-card {
+    height: 6.25%;
+    width: 8.9em;
+    padding: 0.5em;
+}
+
+.bubbles-layer-card video {
+    height: 5em;
+    width: 8.86em;
+    border: 0.2em solid #555;
+    margin-top: 0.2em;
+    border-radius: 1em;
+    background-color: #000;
+}
