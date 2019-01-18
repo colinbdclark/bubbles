@@ -77,23 +77,40 @@ fluid.defaults("bubbles.layerStack", {
             type: "bubbles.videoLayerView",
             container: "{arguments}.0",
             options: {
-                layerID: "{arguments}.1"
+                layerID: "{arguments}.1",
+                modelRelay: {
+                    source: {
+                        context: "layerStack",
+                        segs: [
+                            "layers",
+                            "{that}.options.layerID"
+                        ]
+                    },
+                    target: "",
+                    singleTransform: {
+                        type: "fluid.transforms.identity"
+                    }
+                }
             }
         }
     },
 
     events: {
+        onRequestNewLayer: null,
         onAddNewLayer: null,
         afterLayerCardRendered: null
     },
 
     listeners: {
         "onCreate.addFirstLayer": {
-            func: "{that}.events.onAddNewLayer.fire"
+            func: "{that}.events.onRequestNewLayer.fire"
         },
 
         "{addLayerButton}.events.onAdd": {
-            namespace: "triggerDynamicComponentCreation",
+            func: "{that}.events.onRequestNewLayer.fire"
+        },
+
+        "onRequestNewLayer.createLayerEntry": {
             func: "bubbles.layerStack.createComponentEntry",
             args: ["{that}"]
         },

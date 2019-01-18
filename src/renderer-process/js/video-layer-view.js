@@ -20,7 +20,7 @@ fluid.defaults("bubbles.videoLayerView", {
             backward: {
                 excludeSource: "*"
             },
-            source: "{video}.model.url",
+            source: "{that}.model.video.url",
             target: "{addVideoButton}.model.isHidden",
             singleTransform: {
                 type: "fluid.transforms.stringToBoolean"
@@ -44,7 +44,10 @@ fluid.defaults("bubbles.videoLayerView", {
         },
 
         video: {
-            type: "aconite.video"
+            type: "aconite.video",
+            options: {
+                model: "{videoLayerView}.model.video"
+            }
         },
 
         addVideoButton: {
@@ -65,8 +68,8 @@ fluid.defaults("bubbles.videoLayerView", {
         },
 
         "onVideoAdded.updateVideoURL": {
-            changePath: "{video}.model.url",
-            value: "{arguments}.0"
+            changePath: "video.url",
+            value: "{arguments}.0.0"
         },
 
         // TODO: Not this
@@ -74,12 +77,6 @@ fluid.defaults("bubbles.videoLayerView", {
             namespace: "addFile",
             func: "{layerStack}.openFileDialog.open",
             args: "{that}.events.onVideoAdded.fire"
-        },
-
-        // TODO: Not this
-        "onVideoAdded.updateVideoModel": {
-            changePath: "{video}.model.url",
-            value: "{arguments}.0.0"
         }
     }
 });
