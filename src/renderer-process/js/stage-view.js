@@ -35,7 +35,7 @@ fluid.defaults("bubbles.stageView", {
         glRenderer: {
             type: "bubbles.glRenderer",
             container: "{compositor}.dom.stage"
-        },
+        }
     },
 
     styles: {

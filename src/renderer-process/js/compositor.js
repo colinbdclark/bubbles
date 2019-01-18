@@ -20,11 +20,6 @@ fluid.defaults("bubbles.compositor", {
     uniformModelMap: {},
 
     components: {
-        layer: {
-            type: "bubbles.videoLayer",
-            container: "{that}.container"
-        },
-
-        glRenderer: "{ui}.stageView.glRenderer"
+        glRenderer: "{stageView}.glRenderer"
     }
 });

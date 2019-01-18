@@ -7,10 +7,14 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
-fluid.defaults("bubbles.addVideoButton", {
+fluid.defaults("bubbles.addLayerButton", {
     gradeNames: "bubbles.addButton",
 
+    model: {
+        isHidden: "{layerStack}.model.hasMaxLayers"
+    },
+
     strings: {
-        iconAltText: "Add a Video"
+        iconAltText: "Add a Layer"
     }
 });

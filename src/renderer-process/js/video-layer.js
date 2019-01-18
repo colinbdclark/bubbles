@@ -32,5 +32,9 @@ fluid.defaults("bubbles.videoLayer", {
                 }
             }
         }
+    },
+
+    listeners: {
+        "onCreate.playVideo": "{that}.player.play()"
     }
 });

@@ -12,6 +12,8 @@ var bubbles = fluid.registerNamespace("bubbles");
 fluid.defaults("bubbles.videoLayerView", {
     gradeNames: "fluid.viewComponent",
 
+    layerIdx: 0,
+
     modelRelay: [
         {
             namespace: "mapVideoURLToButtonVisibility",
@@ -30,7 +32,15 @@ fluid.defaults("bubbles.videoLayerView", {
         glRenderer: "{stageView}.glRenderer",
 
         videoLayer: {
-            type: "bubbles.videoLayer"
+            createOnEvent: "onVideoAdded",
+            type: "bubbles.videoLayer",
+            options: {
+                bindToTextureUnit: {
+                    expander: {
+                        func: "bubbles.videoLayerView.makeTextureUnitString",args: "{videoLayerView}.options.layerIdx"
+                    }
+                }
+            }
         },
 
         video: {
@@ -43,32 +53,38 @@ fluid.defaults("bubbles.videoLayerView", {
         }
     },
 
-    listeners: {
-        "onCreate.renderCard": {
-            funcName: "bubbles.videoLayerView.renderCard",
-            args: ["{that}"]
-        },
+    events: {
+        onVideoAdded: null
+    },
 
+    listeners: {
         "onCreate.injectVideo": {
-            priority: "after:renderCard",
-            "this": "{that}.dom.layerCard",
+            "this": "{that}.container",
             method: "append",
             args: "{that}.video.element"
+        },
+
+        "onVideoAdded.updateVideoURL": {
+            changePath: "{video}.model.url",
+            value: "{arguments}.0"
+        },
+
+        // TODO: Not this
+        "{addVideoButton}.events.onAdd": {
+            namespace: "addFile",
+            func: "{layerStack}.openFileDialog.open",
+            args: "{that}.events.onVideoAdded.fire"
+        },
+
+        // TODO: Not this
+        "onVideoAdded.updateVideoModel": {
+            changePath: "{video}.model.url",
+            value: "{arguments}.0.0"
         }
-    },
-
-    selectors: {
-        layerCard: ".bubbles-layer-card"
-    },
-
-    markup: {
-        layerCard: "<div class='bubbles-layer-card'></div>"
     }
 });
 
-bubbles.videoLayerView.renderCard = function (that) {
-    var layerCardMarkup = fluid.stringTemplate(
-        that.options.markup.layerCard, that.model);
-
-    that.container.append(layerCardMarkup);
+// TODO: Move this.
+bubbles.videoLayerView.makeTextureUnitString = function (textureNum) {
+    return "TEXTURE" + textureNum;
 };
