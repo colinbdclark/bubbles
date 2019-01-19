@@ -2,12 +2,18 @@
     position: absolute;
     left: 2.7em;
     padding-top: 0.4em;
-    fill: #fff;
+    fill: #aaa;
     z-index: 1;
     height: 5em;
     width: 5em;
 }
 
-.bubbles-add-icon:focus ~ .bubbles-layer-card video {
+.bubbles-layer-card .bubbles-add-icon:focus,
+.bubbles-layer-card .bubbles-add-icon:hover {
+    fill: #fff;
+}
+
+.bubbles-add-icon:focus ~ video,
+.bubbles-add-icon:hover ~ video {
     border-color: #fff;
 }

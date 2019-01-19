@@ -1,3 +1,11 @@
+.bubbles-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 .bubbles-stage.bubbles-stage-mouseHidden {
     cursor: none;
 }

@@ -11,7 +11,8 @@
     height: 3em;
 }
 
-.bubbles-add-layer .bubbles-add-icon:focus {
+.bubbles-add-layer .bubbles-add-icon:focus,
+.bubbles-add-layer .bubbles-add-icon:hover {
     border-color: #fff;
     fill: #fff;
 }
