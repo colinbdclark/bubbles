@@ -14,7 +14,7 @@ fluid.defaults("bubbles.layerStack", {
 
     model: {
         hasMaxLayers: false,
-        numLayers: 0,
+        numLayers: "{ui}.compositor.model.numLayers",
         layers: {
             // "guid-123": {
             //     index: 0,

@@ -9,18 +9,15 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 fluid.defaults("bubbles.videoLayer", {
     gradeNames: [
-        "aconite.immediatelyReady",
         "aconite.compositableVideo"
     ],
-
-    bindToTextureUnit: "TEXTURE0",
 
     model: {
         loop: true
     },
 
     components: {
-        glRenderer: "{videoLayerView}.glRenderer",
+        glRenderer: "{videoLayerView}.compositor.glRenderer",
 
         source: "{videoLayerView}.video",
 
@@ -35,6 +32,7 @@ fluid.defaults("bubbles.videoLayer", {
     },
 
     listeners: {
-        "onCreate.playVideo": "{that}.player.play()"
+        "onCreate.play": "{that}.play()",
+        "{videoLayerView}.compositor.events.onDraw": "{that}.draw()"
     }
 });

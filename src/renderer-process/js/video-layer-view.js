@@ -29,15 +29,14 @@ fluid.defaults("bubbles.videoLayerView", {
     ],
 
     components: {
-        glRenderer: "{stageView}.glRenderer",
+        compositor: "{ui}.compositor",
 
         videoLayer: {
-            createOnEvent: "onVideoAdded",
             type: "bubbles.videoLayer",
             options: {
                 bindToTextureUnit: {
                     expander: {
-                        func: "bubbles.videoLayerView.makeTextureUnitString",args: "{videoLayerView}.options.layerIdx"
+                        func: "bubbles.videoLayerView.makeTextureUnitString",args: "{videoLayerView}.model.layerIdx"
                     }
                 }
             }

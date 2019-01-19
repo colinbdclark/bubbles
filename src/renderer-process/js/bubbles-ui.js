@@ -16,6 +16,18 @@ fluid.defaults("bubbles.ui", {
             container: "{that}.options.selectors.compositionPanel"
         },
 
+        compositor: {
+            type: "bubbles.compositor",
+            container: "{stageView}.dom.stageContainer",
+            options: {
+                components: {
+                    glRenderer: {
+                        type: "bubbles.glRenderer"
+                    }
+                }
+            }
+        },
+
         stageView: {
             type: "bubbles.stageView",
             container: "{that}.dom.stage"
