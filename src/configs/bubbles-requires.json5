@@ -1,8 +1,8 @@
 {
     require: [
         "infusion-electron",
-        "%bubbles/index.js",
-        "%bubbles/src/main-process/main-window.js",
-        "%bubbles/src/main-process/app.js"
+        "%video-bubbles/index.js",
+        "%video-bubbles/src/main-process/main-window.js",
+        "%video-bubbles/src/main-process/app.js"
     ]
 }

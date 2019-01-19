@@ -16,7 +16,7 @@ var fluid = require("infusion");
 var bubbles = fluid.registerNamespace("bubbles");
 fluid.module.register("bubbles", __dirname, require);
 
-fluid.require("%bubbles/src/main-process/app.js");
-fluid.require("%bubbles/src/main-process/main-window.js");
+fluid.require("%video-bubbles/src/main-process/app.js");
+fluid.require("%video-bubbles/src/main-process/main-window.js");
 
 module.exports = bubbles;
