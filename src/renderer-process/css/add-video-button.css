@@ -1,30 +1,13 @@
-.bubbles-add-video-icon {
+.bubbles-layer-card .bubbles-add-icon {
     position: absolute;
     left: 2.7em;
-    padding-top: 0.9em;
-    fill: #ddd;
+    padding-top: 0.4em;
+    fill: #fff;
     z-index: 1;
     height: 5em;
     width: 5em;
 }
 
-.bubbles-add-video-icon:focus {
-    outline: none;
-    fill: #fff;
-}
-
-.bubbles-add-video-icon:focus ~ .bubbles-layer-card video {
+.bubbles-add-icon:focus ~ .bubbles-layer-card video {
     border-color: #fff;
-}
-
-.bubbles-add-video-icon-hidden {
-    opacity: 0;
-}
-
-.bubbles-add-video-icon-hidden:hover {
-    opacity: 1;
-}
-
-.bubbles-add-video-icon-hidden:focus {
-    opacity: 1;
 }

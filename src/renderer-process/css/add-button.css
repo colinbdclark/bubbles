@@ -1,0 +1,16 @@
+.bubbles-add-icon:focus {
+    outline: none;
+    fill: #fff;
+}
+
+.bubbles-add-icon-hidden {
+    opacity: 0;
+}
+
+.bubbles-add-icon-hidden:hover {
+    opacity: 1;
+}
+
+.bubbles-add-icon-hidden:focus {
+    opacity: 1;
+}

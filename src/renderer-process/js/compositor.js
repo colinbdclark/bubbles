@@ -8,23 +8,22 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.compositor", {
-    gradeNames: [
-        "aconite.immediatelyReady",
-        "aconite.compositor.autoPlay"
-    ],
+    gradeNames: "aconite.animator",
 
     fps: 60,
 
-    model: {},
+    model: {
+        // TODO: This needs to be "numReadyLayers",
+        // Created by incrementing a model field when videos
+        // are ready.
+        numLayers: 0
+    },
 
-    uniformModelMap: {},
+    uniformModelMap: {
+        numLayers: "numLayers"
+    },
 
-    components: {
-        layer: {
-            type: "bubbles.videoLayer",
-            container: "{that}.container"
-        },
-
-        glRenderer: "{ui}.stageView.glRenderer"
+    listeners: {
+        "onReady.play": "{that}.play()"
     }
 });

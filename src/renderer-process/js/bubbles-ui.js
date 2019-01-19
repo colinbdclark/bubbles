@@ -16,52 +16,30 @@ fluid.defaults("bubbles.ui", {
             container: "{that}.options.selectors.compositionPanel"
         },
 
-        stageView: {
-            type: "bubbles.stageView",
-            container: "{that}.dom.stage"
-        },
-
-        // TODO: Soon this will become a set of dynamic components
-        // in a layerStackView component?
-        videoLayerView: {
-            // TODO: Move these bindings into a separate grade.
-            type: "bubbles.videoLayerView",
-            container: "{that}.dom.layerStack",
+        compositor: {
+            type: "bubbles.compositor",
+            container: "{stageView}.dom.stageContainer",
             options: {
                 components: {
-                    video: {
-                        options: {
-                            model: {
-                                url: "{openFileDialog}.model.urls.0"
-                            }
-                        }
-                    },
-
-                    addVideoButton: {
-                        options: {
-                            listeners: {
-                                "onAddVideo.openFileDialog": {
-                                    func: "{openFileDialog}.open"
-                                }
-                            }
-                        }
+                    glRenderer: {
+                        type: "bubbles.glRenderer"
                     }
                 }
             }
         },
 
-        idleMouseNotifier: {
-            type: "bubbles.idleMouseNotifier"
+        stageView: {
+            type: "bubbles.stageView",
+            container: "{that}.dom.stage"
         },
 
-        openFileDialog: {
-            type: "bubbles.openFileDialog"
+        idleMouseNotifier: {
+            type: "bubbles.idleMouseNotifier"
         }
     },
 
     selectors: {
         compositionPanel: ".bubbles-composition-panel",
-        stage: ".bubbles-stage",
-        layerStack: ".bubbles-layer-stack"
+        stage: ".bubbles-stage"
     }
 });

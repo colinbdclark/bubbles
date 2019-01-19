@@ -5,11 +5,15 @@
         <title>Bubbles</title>
         <link href="../../../node_modules/normalize.css/normalize.css" rel="stylesheet">
         <link href="../css/bubbles.css" rel="stylesheet">
-        <link href="../css/panel.css" rel="stylesheet">
-        <link href="../css/show-hide-button.css" rel="stylesheet">
         <link href="../css/stage.css" rel="stylesheet">
+        <link href="../css/panel.css" rel="stylesheet">
+        <link href="../css/composition-panel.css" rel="stylesheet">
+        <link href="../css/show-hide-button.css" rel="stylesheet">
+        <link href="../css/layer-stack.css" rel="stylesheet">
         <link href="../css/video-layer.css" rel="stylesheet">
+        <link href="../css/add-button.css" rel="stylesheet">
         <link href="../css/add-video-button.css" rel="stylesheet">
+        <link href="../css/add-layer-button.css" rel="stylesheet">
 
         <script src="../js/namespace-electron-globals.js"></script>
         <script src="../../../node_modules/infusion/dist/infusion-framework.js"></script>
@@ -23,9 +27,13 @@
         <script src="../js/show-hide-button.js"></script>
         <script src="../js/panel.js"></script>
         <script src="../js/composition-panel.js"></script>
+        <script src="../js/layer-stack.js"></script>
+        <script src="../js/dynamic-component-manager.js"></script>
+        <script src="../js/add-layer-button.js"></script>
         <script src="../js/video-player.js"></script>
         <script src="../js/video-layer.js"></script>
         <script src="../js/video-layer-view.js"></script>
+        <script src="../js/add-button.js"></script>
         <script src="../js/add-video-button.js"></script>
         <script src="../js/open-file-dialog.js"></script>
         <script src="../js/gl-renderer.js"></script>
@@ -42,7 +50,11 @@
             </div>
 
             <div class="bubbles-composition-panel bubbles-panel">
-                <div class="bubbles-layer-stack"></div>
+                <div class="scroller">
+                    <div class="bubbles-layer-stack">
+                        <div class="bubbles-add-layer"></div>
+                    </div>
+                </div>
             </div>
         </div>
 

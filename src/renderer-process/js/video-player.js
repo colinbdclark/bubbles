@@ -16,5 +16,9 @@ fluid.defaults("bubbles.videoPlayer", {
 
     components: {
         video: "{videoLayerView}.video"
+    },
+
+    listeners: {
+        "onVideoLoaded.autoPlay": "{that}.play()"
     }
 });

@@ -1,0 +1,21 @@
+.bubbles-add-layer .bubbles-add-icon {
+    position: absolute;
+    z-index: 1;
+    top: 92%;
+    left: 80%;
+    border: 0.1em solid #888;
+    background-color: #000;
+    fill: #888;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+}
+
+.bubbles-add-layer .bubbles-add-icon:focus {
+    border-color: #fff;
+    fill: #fff;
+}
+
+.bubbles-add-layer .bubbles-add-icon.bubbles-add-icon-hidden {
+    display: none;
+}

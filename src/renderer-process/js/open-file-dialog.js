@@ -31,11 +31,6 @@ fluid.defaults("bubbles.openFileDialog", {
 
     model: {
         /**
-         * An array of URLs of file paths selected by the user.
-         */
-        urls: undefined,
-
-        /**
          * The settings for the open file dialog.
          * This object is passed directly to the Electron API.
          */
@@ -59,19 +54,8 @@ fluid.defaults("bubbles.openFileDialog", {
             args: [
                 "{that}.browserWindow",
                 "{that}.model.dialogSettings",
-                "{that}.events.onFilesSelected.fire"
+                "{arguments}.0"
             ]
-        }
-    },
-
-    events: {
-        onFilesSelected: null
-    },
-
-    listeners: {
-        "onFilesSelected.updateModel": {
-            changePath: "urls",
-            value: "{arguments}.0"
         }
     }
 });
