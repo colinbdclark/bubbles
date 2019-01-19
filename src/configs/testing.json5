@@ -5,10 +5,10 @@
     },
 
     require: [
-        "%bubbles/tests/utils/test-app.js",
-        "%bubbles/tests/utils/test-runner.js",
+        "%video-bubbles/tests/utils/test-app.js",
+        "%video-bubbles/tests/utils/test-runner.js",
 
-        "%bubbles/tests/js/main-window-tests.js"
+        "%video-bubbles/tests/js/main-window-tests.js"
     ],
 
     mergeConfigs: [

@@ -1,5 +1,5 @@
 {
-    "name": "bubbles",
+    "name": "video-bubbles",
     "productName": "Bubbles",
     "version": "0.1.0",
     "author": "Colin Clark",
@@ -37,6 +37,7 @@
     "scripts": {
         "test": "node_modules/.bin/electron tests/all-tests.js",
         "app": "node_modules/.bin/electron .",
+        "package": "node_modules/.bin/electron-packager ./",
         "package-mac": "node_modules/.bin/electron-packager ./ --platform=darwin --arch=x64"
     }
 }
