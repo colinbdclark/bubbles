@@ -3,14 +3,15 @@
     fill: #fff;
 }
 
+.bubbles-add-icon:hover {
+    fill: #fff;
+}
+
 .bubbles-add-icon-hidden {
     opacity: 0;
 }
 
-.bubbles-add-icon-hidden:hover {
-    opacity: 1;
-}
-
+.bubbles-add-icon-hidden:hover,
 .bubbles-add-icon-hidden:focus {
     opacity: 1;
 }
