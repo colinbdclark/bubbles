@@ -8,7 +8,6 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.glRenderer", {
-    // TODO: Update this when we have mulitiple layers.
     gradeNames: "aconite.glRenderer",
 
     shaders: {

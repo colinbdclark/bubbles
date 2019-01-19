@@ -8,13 +8,24 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.videoLayer", {
-    gradeNames: [
-        "aconite.compositableVideo"
-    ],
+    gradeNames: "aconite.compositableVideo",
 
     model: {
+        layerIdx: 0,
         loop: true
     },
+
+    modelRelay: [
+        {
+            namespace: "mapLayerIndexToTextureUnit",
+            target: "textureUnit",
+            singleTransform: {
+                type: "fluid.transforms.free",
+                func: "bubbles.videoLayer.makeTextureUnitString",
+                args: ["{that}.model.layerIdx"]
+            }
+        }
+    ],
 
     components: {
         glRenderer: "{videoLayerView}.compositor.glRenderer",
@@ -36,3 +47,7 @@ fluid.defaults("bubbles.videoLayer", {
         "{videoLayerView}.compositor.events.onDraw": "{that}.draw()"
     }
 });
+
+bubbles.videoLayer.makeTextureUnitString = function (textureNum) {
+    return "TEXTURE" + textureNum;
+};

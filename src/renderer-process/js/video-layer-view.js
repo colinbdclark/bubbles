@@ -34,10 +34,8 @@ fluid.defaults("bubbles.videoLayerView", {
         videoLayer: {
             type: "bubbles.videoLayer",
             options: {
-                bindToTextureUnit: {
-                    expander: {
-                        func: "bubbles.videoLayerView.makeTextureUnitString",args: "{videoLayerView}.model.layerIdx"
-                    }
+                model: {
+                    layerIdx: "{videoLayerView}.model.layerIdx"
                 }
             }
         },
@@ -51,7 +49,16 @@ fluid.defaults("bubbles.videoLayerView", {
 
         addVideoButton: {
             type: "bubbles.addVideoButton",
-            container: "{that}.container"
+            container: "{that}.container",
+            options: {
+                listeners: {
+                    "onAdd.openFileDialog": {
+                        namespace: "addFile",
+                        func: "{layerStack}.openFileDialog.open",
+                        args: "{videoLayerView}.events.onVideoAdded.fire"
+                    }
+                }
+            }
         }
     },
 
@@ -69,18 +76,6 @@ fluid.defaults("bubbles.videoLayerView", {
         "onVideoAdded.updateVideoURL": {
             changePath: "video.url",
             value: "{arguments}.0.0"
-        },
-
-        // TODO: Not this
-        "{addVideoButton}.events.onAdd": {
-            namespace: "addFile",
-            func: "{layerStack}.openFileDialog.open",
-            args: "{that}.events.onVideoAdded.fire"
         }
     }
 });
-
-// TODO: Move this.
-bubbles.videoLayerView.makeTextureUnitString = function (textureNum) {
-    return "TEXTURE" + textureNum;
-};

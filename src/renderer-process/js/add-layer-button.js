@@ -10,10 +10,6 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.addLayerButton", {
     gradeNames: "bubbles.addButton",
 
-    model: {
-        isHidden: "{layerStack}.model.hasMaxLayers"
-    },
-
     strings: {
         iconAltText: "Add a Layer"
     }

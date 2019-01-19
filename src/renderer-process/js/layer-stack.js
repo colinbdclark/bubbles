@@ -54,7 +54,9 @@ fluid.defaults("bubbles.layerStack", {
                 model: "{layerStack}.model.layers",
                 events: {
                     onCreateComponent: "{layerStack}.events.onAddNewLayer"
-                    // TODO: onDestroyComponent is not currently bound.
+                    // TODO: onDestroyComponent is not currently bound
+                    // because there is no way in the current UI to
+                    // remove layers once they've been added.
                 }
             }
         },
@@ -67,7 +69,18 @@ fluid.defaults("bubbles.layerStack", {
 
         addLayerButton: {
             type: "bubbles.addLayerButton",
-            container: "{that}.dom.addLayerButtonContainer"
+            container: "{that}.dom.addLayerButtonContainer",
+            options: {
+                model: {
+                    isHidden: "{layerStack}.model.hasMaxLayers"
+                },
+
+                listeners: {
+                    "onAdd.requestNewLayer": {
+                        func: "{layerStack}.events.onRequestNewLayer.fire"
+                    }
+                }
+            }
         }
     },
 
@@ -106,10 +119,6 @@ fluid.defaults("bubbles.layerStack", {
             func: "{that}.events.onRequestNewLayer.fire"
         },
 
-        "{addLayerButton}.events.onAdd": {
-            func: "{that}.events.onRequestNewLayer.fire"
-        },
-
         "onRequestNewLayer.createLayerEntry": {
             func: "bubbles.layerStack.createComponentEntry",
             args: ["{that}"]
@@ -129,14 +138,6 @@ fluid.defaults("bubbles.layerStack", {
         layerCard: "<div class='bubbles-layer-card'></div>"
     }
 });
-
-bubbles.layerStack.incrementNumLayers = function (that) {
-    // TODO: Use hasMaxLayers.
-    var nextLayerIdx = that.model.numLayers + 1;
-    if (nextLayerIdx <= that.options.maxNumLayers) {
-        that.applier.change("numLayers", nextLayerIdx);
-    }
-};
 
 bubbles.layerStack.handleLayerChange = function (that, change) {
     // TODO: Currently, there is no way to remove a layer
