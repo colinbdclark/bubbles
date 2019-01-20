@@ -2,18 +2,18 @@ precision highp float;
 
 const int MAX_LAYERS = 16;
 
-uniform int numLayers;
+uniform int numReadyLayers;
 uniform sampler2D layerSamplers[MAX_LAYERS];
 uniform vec2 textureSize;
 
 void main(void) {
     vec2 coords = vec2(gl_FragCoord.x / textureSize.x, gl_FragCoord.y / textureSize.y);
 
-    float scale = float(numLayers);
+    float scale = float(numReadyLayers);
     vec4 layerSum = vec4(0.0, 0.0, 0.0, 1.0);
 
     for (int i = 0; i < MAX_LAYERS; i++) {
-        if (i > numLayers) {
+        if (i >= numReadyLayers) {
             break;
         }
         vec4 frag = texture2D(layerSamplers[i], coords);

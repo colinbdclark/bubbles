@@ -14,9 +14,32 @@ fluid.defaults("bubbles.layerStack", {
 
     maxNumLayers: 16,
 
+    distributeOptions: [
+        {
+            /**
+             * Distributes a model listener to descendent videos
+             * that will update the numReadyLayers value when
+             * they transition to/from being ready to play.
+             */
+            record: {
+                modelListeners: {
+                    canPlayThrough: {
+                        namespace: "incrementLayerStackReady",
+                        excludeSource: "init",
+                        func: "bubbles.layerStack.updateNumReadyLayers",
+                        args: ["{layerStack}", "{change}"]
+                    }
+                }
+            },
+
+            target: "{that video}.options"
+        }
+    ],
+
     model: {
         hasMaxLayers: false,
-        numLayers: "{composition}.compositor.model.numLayers",
+        numLayers: 0,
+        numReadyLayers: "{composition}.compositor.model.numReadyLayers",
         layers: {
             // "guid-123": {
             //     index: 0,
@@ -40,7 +63,7 @@ fluid.defaults("bubbles.layerStack", {
             namespace: "countLayers",
             target: "numLayers",
             singleTransform: {
-                // Is there a real transform I can use here?
+                // TODO: Is there a real transform I can use here?
                 type: "fluid.transforms.free",
                 func: "bubbles.layerStack.countLayers",
                 args: "{that}.model.layers"
@@ -173,4 +196,14 @@ bubbles.layerStack.createComponentEntry = function (that) {
 
 bubbles.layerStack.countLayers = function (layers) {
     return layers ? Object.keys(layers).length : 0;
+};
+
+bubbles.layerStack.updateNumReadyLayers = function (that, change) {
+    if (change.value && change.oldValue === false) {
+        that.applier.change("numReadyLayers",
+            that.model.numReadyLayers + 1);
+    } else if (!change.value && change.oldValue) {
+        that.applier.change("numReadyLayers",
+            that.model.numReadyLayers - 1);
+    }
 };
