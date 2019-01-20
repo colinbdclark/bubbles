@@ -13,14 +13,11 @@ fluid.defaults("bubbles.compositor", {
     fps: 60,
 
     model: {
-        // TODO: This needs to be "numReadyLayers",
-        // Created by incrementing a model field when videos
-        // are ready.
-        numLayers: 0
+        numReadyLayers: 0
     },
 
     uniformModelMap: {
-        numLayers: "numLayers"
+        numReadyLayers: "numReadyLayers"
     },
 
     listeners: {

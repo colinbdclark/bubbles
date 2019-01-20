@@ -7,14 +7,41 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.layerStack", {
     gradeNames: "fluid.viewComponent",
 
     maxNumLayers: 16,
 
+    distributeOptions: [
+        {
+            /**
+             * Distributes a model listener to descendent videos
+             * that will update the numReadyLayers value when
+             * they transition to/from being ready to play.
+             */
+            record: {
+                // TODO: Could this be done with a model
+                // transformation of some kinds?
+                modelListeners: {
+                    canPlayThrough: {
+                        namespace: "incrementLayerStackReady",
+                        excludeSource: "init",
+                        func: "bubbles.layerStack.updateNumReadyLayers",
+                        args: ["{layerStack}", "{change}"]
+                    }
+                }
+            },
+
+            target: "{that video}.options"
+        }
+    ],
+
     model: {
         hasMaxLayers: false,
-        numLayers: "{composition}.compositor.model.numLayers",
+        numLayers: 0,
+        numReadyLayers: "{composition}.compositor.model.numReadyLayers",
         layers: {
             // "guid-123": {
             //     index: 0,
@@ -38,11 +65,10 @@ fluid.defaults("bubbles.layerStack", {
             namespace: "countLayers",
             target: "numLayers",
             singleTransform: {
-                // Is there a real transform I can use here?
+                // TODO: Is there a real transform I can use here?
                 type: "fluid.transforms.free",
                 func: "bubbles.layerStack.countLayers",
-                args: "{that}.model.layers",
-
+                args: "{that}.model.layers"
             }
         }
     ],
@@ -143,7 +169,7 @@ bubbles.layerStack.handleLayerChange = function (that, change) {
     // TODO: Currently, there is no way to remove a layer
     // after it has been added.
     if (change.oldValue > change.value) {
-        that.applier.change(numLayers, change.oldValue);
+        that.applier.change("numLayers", change.oldValue);
     } else {
         that.events.onAddNewLayer.fire(change.value);
     }
@@ -168,8 +194,18 @@ bubbles.layerStack.createComponentEntry = function (that) {
         layerIdx: that.model.numLayers,
         url: undefined
     });
-}
+};
 
 bubbles.layerStack.countLayers = function (layers) {
     return layers ? Object.keys(layers).length : 0;
+};
+
+bubbles.layerStack.updateNumReadyLayers = function (that, change) {
+    if (change.value && change.oldValue === false) {
+        that.applier.change("numReadyLayers",
+            that.model.numReadyLayers + 1);
+    } else if (!change.value && change.oldValue) {
+        that.applier.change("numReadyLayers",
+            that.model.numReadyLayers - 1);
+    }
 };

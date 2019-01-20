@@ -16,7 +16,7 @@ fluid.defaults("bubbles.glRenderer", {
     },
 
     uniforms: {
-        numLayers: {
+        numReadyLayers: {
             type: "1i",
             values: 0
         },
