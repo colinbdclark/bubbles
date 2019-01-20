@@ -1,4 +1,4 @@
-.bubbles-composition-panel .scroller {
+.bubbles-score-panel .scroller {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -6,10 +6,10 @@
 }
 
 /*
- * Hides all of the contents of the composition panel when it
+ * Hides all of the contents of the score panel when it
  * has been hidden with the show/hide button
  * (so that elements won't be focusable/activatable).
  */
-.bubbles-composition-panel.bubbles-panel-hidden .scroller {
+.bubbles-score-panel.bubbles-panel-hidden .scroller {
     display: none;
 }

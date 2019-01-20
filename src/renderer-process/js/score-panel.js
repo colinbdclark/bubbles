@@ -7,7 +7,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
-fluid.defaults("bubbles.compositionPanel", {
+fluid.defaults("bubbles.scorePanel", {
     gradeNames: "bubbles.panel",
 
     components: {

@@ -29,7 +29,7 @@ fluid.defaults("bubbles.videoLayerView", {
     ],
 
     components: {
-        compositor: "{ui}.compositor",
+        compositor: "{composition}.compositor",
 
         videoLayer: {
             type: "bubbles.videoLayer",

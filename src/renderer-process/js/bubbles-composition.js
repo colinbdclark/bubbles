@@ -7,13 +7,13 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
-fluid.defaults("bubbles.ui", {
+fluid.defaults("bubbles.composition", {
     gradeNames: "fluid.viewComponent",
 
     components: {
-        compositionPanel: {
-            type: "bubbles.compositionPanel",
-            container: "{that}.options.selectors.compositionPanel"
+        scorePanel: {
+            type: "bubbles.scorePanel",
+            container: "{that}.options.selectors.scorePanel"
         },
 
         compositor: {
@@ -39,7 +39,7 @@ fluid.defaults("bubbles.ui", {
     },
 
     selectors: {
-        compositionPanel: ".bubbles-composition-panel",
+        scorePanel: ".bubbles-score-panel",
         stage: ".bubbles-stage"
     }
 });
