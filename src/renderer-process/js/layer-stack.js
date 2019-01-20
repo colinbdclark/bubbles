@@ -22,6 +22,8 @@ fluid.defaults("bubbles.layerStack", {
              * they transition to/from being ready to play.
              */
             record: {
+                // TODO: Could this be done with a model
+                // transformation of some kinds?
                 modelListeners: {
                     canPlayThrough: {
                         namespace: "incrementLayerStackReady",
