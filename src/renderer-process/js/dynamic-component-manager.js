@@ -7,6 +7,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 /**
  * Responsible for firing events that can be used to create
  * or destroy components based on a modelized representation

@@ -7,6 +7,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.layerStack", {
     gradeNames: "fluid.viewComponent",
 
@@ -41,8 +43,7 @@ fluid.defaults("bubbles.layerStack", {
                 // Is there a real transform I can use here?
                 type: "fluid.transforms.free",
                 func: "bubbles.layerStack.countLayers",
-                args: "{that}.model.layers",
-
+                args: "{that}.model.layers"
             }
         }
     ],
@@ -143,7 +144,7 @@ bubbles.layerStack.handleLayerChange = function (that, change) {
     // TODO: Currently, there is no way to remove a layer
     // after it has been added.
     if (change.oldValue > change.value) {
-        that.applier.change(numLayers, change.oldValue);
+        that.applier.change("numLayers", change.oldValue);
     } else {
         that.events.onAddNewLayer.fire(change.value);
     }
@@ -168,7 +169,7 @@ bubbles.layerStack.createComponentEntry = function (that) {
         layerIdx: that.model.numLayers,
         url: undefined
     });
-}
+};
 
 bubbles.layerStack.countLayers = function (layers) {
     return layers ? Object.keys(layers).length : 0;
