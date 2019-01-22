@@ -1,5 +1,6 @@
 .bubbles-midi-port-selector {
     background-color: #444;
+    border-bottom: 0.1em solid #aaa;
     opacity: 1.0;
     font-size: 0.8em;
     font-family: sans-serif;

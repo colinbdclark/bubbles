@@ -21,6 +21,18 @@ fluid.defaults("bubbles.glRenderer", {
             values: 0
         },
 
+        layerOpacities: {
+            type: "1fv",
+            values: [
+                [
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0
+                ]
+            ]
+        },
+
         layerSamplers: {
             type: "1iv",
             values: [

@@ -13,8 +13,8 @@ fluid.defaults("bubbles.midiSource", {
     ports: 0,
 
     model: {
-        notes: {},
-        controls: {}
+        notes: "@expand:bubbles.midiSource.initMIDIModel(128, 0)",
+        controls: "@expand:bubbles.midiSource.initMIDIModel(128, 0)"
     },
 
     components: {
@@ -60,4 +60,12 @@ bubbles.midiSource.modelizeMessage = function (firstSeg, secondSegKey, valueKey,
     bubbles.midiSource.messageChangeSegs[0] = firstSeg;
     bubbles.midiSource.messageChangeSegs[1] = msg[secondSegKey];
     applier.change(bubbles.midiSource.messageChangeSegs, msg[valueKey]);
+};
+
+bubbles.midiSource.initMIDIModel = function (numKeys, initialValue) {
+    var modelEntry = {};
+    for (var i = 0; i < numKeys; i++) {
+        modelEntry[i.toString()] = initialValue;
+    }
+    return modelEntry;
 };
