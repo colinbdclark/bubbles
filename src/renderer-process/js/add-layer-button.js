@@ -8,9 +8,9 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.addLayerButton", {
-    gradeNames: "bubbles.addButton",
+    gradeNames: "bubbles.svgButton",
 
     strings: {
-        iconAltText: "Add a Layer"
+        altText: "Add a Layer"
     }
 });

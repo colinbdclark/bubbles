@@ -1,4 +1,4 @@
-.bubbles-layer-card .bubbles-add-icon {
+.bubbles-layer-card .bubbles-button {
     position: absolute;
     left: 2.7em;
     padding-top: 0.4em;
@@ -8,12 +8,12 @@
     width: 5em;
 }
 
-.bubbles-layer-card .bubbles-add-icon:focus,
-.bubbles-layer-card .bubbles-add-icon:hover {
+.bubbles-layer-card .bubbles-button:focus,
+.bubbles-layer-card .bubbles-button:hover {
     fill: #fff;
 }
 
-.bubbles-add-icon:focus ~ video,
-.bubbles-add-icon:hover ~ video {
+.bubbles-button:focus ~ video,
+.bubbles-button:hover ~ video {
     border-color: #fff;
 }

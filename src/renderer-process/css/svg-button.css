@@ -1,0 +1,17 @@
+.bubbles-button:focus {
+    outline: none;
+    fill: #fff;
+}
+
+.bubbles-button:hover {
+    fill: #fff;
+}
+
+.bubbles-button-hidden {
+    opacity: 0;
+}
+
+.bubbles-button-hidden:hover,
+.bubbles-button-hidden:focus {
+    opacity: 1;
+}

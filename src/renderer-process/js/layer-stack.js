@@ -102,7 +102,7 @@ fluid.defaults("bubbles.layerStack", {
                 },
 
                 listeners: {
-                    "onAdd.requestNewLayer": {
+                    "onActivate.requestNewLayer": {
                         func: "{layerStack}.events.onRequestNewLayer.fire"
                     }
                 }

@@ -8,16 +8,22 @@
         <link href="../css/stage.css" rel="stylesheet">
         <link href="../css/panel.css" rel="stylesheet">
         <link href="../css/score-panel.css" rel="stylesheet">
+        <link href="../css/midi-port-selector.css" rel="stylesheet">
+        <link href="../css/midi-map-button.css" rel="stylesheet">
         <link href="../css/show-hide-button.css" rel="stylesheet">
         <link href="../css/layer-stack.css" rel="stylesheet">
         <link href="../css/video-layer.css" rel="stylesheet">
-        <link href="../css/add-button.css" rel="stylesheet">
+        <link href="../css/svg-button.css" rel="stylesheet">
         <link href="../css/add-video-button.css" rel="stylesheet">
         <link href="../css/add-layer-button.css" rel="stylesheet">
 
         <script src="../js/namespace-electron-globals.js"></script>
         <script src="../../../node_modules/infusion/dist/infusion-framework.js"></script>
         <script src="../../../node_modules/flocking/dist/flocking-base.js"></script>
+        <script src="../../../node_modules/flocking/src/ui/selectbox/js/selectbox.js"></script>
+        <script src="../../../node_modules/flocking/src/ui/midi/midi-port-selector/js/midi-port-selector.js"></script>
+        <script src="../../../node_modules/flocking/src/ui/midi/midi-connector/js/midi-connector.js"></script>
+
         <!-- TODO: Add other Flocking files as needed. -->
         <script src="../../../node_modules/bergson/dist/bergson-only.js"></script>
         <script src="../../../node_modules/aconite/dist/aconite-only.js"></script>
@@ -27,13 +33,15 @@
         <script src="../js/show-hide-button.js"></script>
         <script src="../js/panel.js"></script>
         <script src="../js/score-panel.js"></script>
+        <script src="../js/midi-port-selector.js"></script>
+        <script src="../js/midi-source.js"></script>
         <script src="../js/layer-stack.js"></script>
         <script src="../js/dynamic-component-manager.js"></script>
         <script src="../js/add-layer-button.js"></script>
         <script src="../js/video-player.js"></script>
         <script src="../js/video-layer.js"></script>
         <script src="../js/video-layer-view.js"></script>
-        <script src="../js/add-button.js"></script>
+        <script src="../js/svg-button.js"></script>
         <script src="../js/add-video-button.js"></script>
         <script src="../js/open-file-dialog.js"></script>
         <script src="../js/gl-renderer.js"></script>
@@ -50,6 +58,9 @@
             </div>
 
             <div class="bubbles-score-panel bubbles-panel">
+                <div class="bubbles-midi-port-selector"></div>
+                <div class="bubbles-midi-map-button-container"></div>
+
                 <div class="scroller">
                     <div class="bubbles-layer-stack">
                         <div class="bubbles-add-layer"></div>
