@@ -35,7 +35,6 @@ fluid.defaults("bubbles.normalizedOpacityConnection", {
             }
         },
 
-        // TODO: Generate all these via an expander.
         {
             target: "{target}.model.layerOpacities.0.0",
             source: "{that}.model.opacity",
