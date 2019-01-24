@@ -8,7 +8,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.midiPortSelector", {
-    gradeNames: "flock.ui.midiPortSelector",
+    gradeNames: "flock.auto.ui.midiPortSelector",
 
     strings: {
         selectBoxLabel: "MIDI Connection"

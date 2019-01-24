@@ -10,6 +10,24 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.scorePanel", {
     gradeNames: "bubbles.panel",
 
+    opacityConnectionGradeNames: {
+        midi: "bubbles.midiOpacityConnection",
+        noInput: "bubbles.normalizedOpacityConnection"
+    },
+
+    model: {
+        // TODO: Move this.
+        selectedMIDIDeviceID: undefined
+    },
+
+    modelListeners: {
+        selectedMIDIDeviceID: {
+            namespace: "updateConnection",
+            funcName: "bubbles.scorePanel.updateOpacityConnection",
+            args: ["{change}", "{that}"]
+        }
+    },
+
     components: {
         layerStack: {
             type: "bubbles.layerStack",
@@ -17,178 +35,44 @@ fluid.defaults("bubbles.scorePanel", {
         },
 
         midiConnector: {
-            type: "flock.ui.midiConnector",
-            container: "{that}.dom.midiPortSelector",
+            type: "flock.auto.ui.midiConnector",
+            container: "{scorePanel}.dom.midiPortSelector",
+            // TODO: Ouch, pointy!
             options: {
                 components: {
                     midiPortSelector: {
-                        type: "bubbles.midiPortSelector"
+                        type: "bubbles.midiPortSelector",
+                        options: {
+                            components: {
+                                selectBox: {
+                                    options: {
+                                        model: {
+                                            selection: "{scorePanel}.model.selectedMIDIDeviceID"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
 
-        // TODO: Move this to somewhere more global, so that it
-        // can be bound to eventually by multiple bubbles, etc.
-        midiSource: {
-            type: "bubbles.midiSource",
+        opacityConnection: {
+            createOnEvent: "onMIDIDeviceSelected",
+            type: "{arguments}.0",
             options: {
                 components: {
-                    sender: "{scorePanel}.midiConnector"
-                },
-
-                modelRelay: [
-                    {
-                        target: "{compositor}.model.layerOpacities.0.0",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.37",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.1",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.36",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.2",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.42",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.3",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.82",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.4",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.40",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.5",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.38",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.6",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.46",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.7",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.44",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.8",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.48",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.9",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.47",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.10",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.45",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.11",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.43",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.12",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.49",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.13",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.55",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.14",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.51",
-                            operator: "/",
-                            right: 127
-                        }
-                    },
-                    {
-                        target: "{compositor}.model.layerOpacities.0.15",
-                        singleTransform: {
-                            type: "fluid.transforms.binaryOp",
-                            left: "{that}.model.notes.53",
-                            operator: "/",
-                            right: 127
-                        }
-                    }
-                ]
+                    target: "{compositor}"
+                }
             }
         }
     },
 
+
     events: {
-        afterMIDIConnectionOpened: null
+        // TODO: Where should this actually go?
+        onMIDIDeviceSelected: null
     },
 
     selectors: {
@@ -197,3 +81,12 @@ fluid.defaults("bubbles.scorePanel", {
         midiMapButtonContainer: ".bubbles-midi-map-button-container"
     }
 });
+
+// TODO: Move this.
+bubbles.scorePanel.updateOpacityConnection = function (change, that) {
+    var connectionType = change.value === "flock-no-port-selected" ?
+        that.options.opacityConnectionGradeNames.noInput :
+        that.options.opacityConnectionGradeNames.midi;
+
+        that.events.onMIDIDeviceSelected.fire(connectionType);
+};
