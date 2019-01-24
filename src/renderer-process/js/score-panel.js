@@ -10,22 +10,9 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.scorePanel", {
     gradeNames: "bubbles.panel",
 
-    opacityConnectionGradeNames: {
-        midi: "bubbles.midiOpacityConnection",
-        noInput: "bubbles.normalizedOpacityConnection"
-    },
-
-    model: {
-        // TODO: Move this.
-        selectedMIDIDeviceID: undefined
-    },
-
-    modelListeners: {
-        selectedMIDIDeviceID: {
-            namespace: "updateConnection",
-            funcName: "bubbles.scorePanel.updateOpacityConnection",
-            args: ["{change}", "{that}"]
-        }
+    opacitiesModulatorGradeNames: {
+        midi: "bubbles.midiOpacitiesModulator",
+        noInput: "bubbles.normalizedOpacitiesModulator"
     },
 
     components: {
@@ -34,59 +21,44 @@ fluid.defaults("bubbles.scorePanel", {
             container: "{that}.dom.layerStack"
         },
 
-        midiConnector: {
-            type: "flock.auto.ui.midiConnector",
-            container: "{scorePanel}.dom.midiPortSelector",
-            // TODO: Ouch, pointy!
-            options: {
-                components: {
-                    midiPortSelector: {
-                        type: "bubbles.midiPortSelector",
-                        options: {
-                            components: {
-                                selectBox: {
-                                    options: {
-                                        model: {
-                                            selection: "{scorePanel}.model.selectedMIDIDeviceID"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-        opacityConnection: {
+        opacitiesModulator: {
             createOnEvent: "onMIDIDeviceSelected",
             type: "{arguments}.0",
             options: {
                 components: {
-                    target: "{compositor}"
+                    relayTarget: "{compositor}"
+                }
+            }
+        },
+
+        midiManager: {
+            type: "bubbles.midiManager",
+            options: {
+                modelListeners: {
+                    selectedMIDIDeviceID: {
+                        namespace: "updateConnection",
+                        funcName: "bubbles.scorePanel.updateOpacitiesModulator",
+                        args: ["{change}", "{scorePanel}"]
+                    }
                 }
             }
         }
     },
 
-
     events: {
-        // TODO: Where should this actually go?
         onMIDIDeviceSelected: null
     },
 
     selectors: {
         layerStack: ".bubbles-layer-stack",
-        midiPortSelector: ".bubbles-midi-port-selector",
-        midiMapButtonContainer: ".bubbles-midi-map-button-container"
+        midiPortSelector: ".bubbles-midi-port-selector"
     }
 });
 
-// TODO: Move this.
-bubbles.scorePanel.updateOpacityConnection = function (change, that) {
-    var connectionType = change.value === "flock-no-port-selected" ?
-        that.options.opacityConnectionGradeNames.noInput :
-        that.options.opacityConnectionGradeNames.midi;
+bubbles.scorePanel.updateOpacitiesModulator = function (change, that) {
+    var modulatorType = change.value === "flock-no-port-selected" ?
+        that.options.opacitiesModulatorGradeNames.noInput :
+        that.options.opacitiesModulatorGradeNames.midi;
 
-        that.events.onMIDIDeviceSelected.fire(connectionType);
+        that.events.onMIDIDeviceSelected.fire(modulatorType);
 };

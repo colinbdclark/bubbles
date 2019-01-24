@@ -13,8 +13,17 @@ fluid.defaults("bubbles.midiSource", {
     ports: 0,
 
     model: {
+        numActiveNotes: 0,
         notes: "@expand:bubbles.midiSource.initMIDIModel(128, 0)",
         controls: "@expand:bubbles.midiSource.initMIDIModel(128, 0)"
+    },
+
+    modelListeners: {
+        "notes.*": {
+            excludeSource: "init",
+            funcName: "bubbles.midiSource.recordNumActiveNote",
+            args: ["{that}", "{change}"]
+        }
     },
 
     components: {
@@ -52,6 +61,14 @@ fluid.defaults("bubbles.midiSource", {
         }
     }
 });
+
+bubbles.midiSource.recordNumActiveNote = function (that, change) {
+    if (change.value > 0 && change.oldValue === 0) {
+        that.applier.change("numActiveNotes", that.model.numActiveNotes + 1);
+    } else if (change.value === 0 && change.oldValue > 0) {
+        that.applier.change("numActiveNotes", that.model.numActiveNotes - 1);
+    }
+};
 
 // Save garbage, reuse the change segments array.
 bubbles.midiSource.messageChangeSegs = new Array(2);

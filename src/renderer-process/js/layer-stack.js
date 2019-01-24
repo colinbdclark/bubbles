@@ -80,7 +80,7 @@ fluid.defaults("bubbles.layerStack", {
                 model: "{layerStack}.model.layers",
                 events: {
                     onCreateComponent: "{layerStack}.events.onAddNewLayer"
-                    // TODO: onDestroyComponent is not currently bound
+                    // Note: onDestroyComponent is not currently bound
                     // because there is no way in the current UI to
                     // remove layers once they've been added.
                 }
