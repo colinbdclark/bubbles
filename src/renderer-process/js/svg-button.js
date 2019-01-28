@@ -9,7 +9,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 var bubbles = fluid.registerNamespace("bubbles");
 
-fluid.defaults("bubbles.addButton", {
+fluid.defaults("bubbles.svgButton", {
     gradeNames: "fluid.viewComponent",
 
     model: {
@@ -22,7 +22,7 @@ fluid.defaults("bubbles.addButton", {
                 namespace: "addHiddenClass",
                 funcName: "bubbles.utils.addConditionalClass",
                 args: [
-                    "{that}.dom.addIcon",
+                    "{that}.dom.button",
                     "{change}.value",
                     "{that}.options.styles.hidden"
                 ]
@@ -30,58 +30,58 @@ fluid.defaults("bubbles.addButton", {
             {
                 namespace: "blur",
                 funcName: "bubbles.utils.blurWhenHidden",
-                args: ["{that}.dom.addIcon", "{change}.value"]
+                args: ["{that}.dom.button", "{change}.value"]
             }
         ]
     },
 
     invokers: {
         handleKeyPress: {
-            funcName: "bubbles.addButton.handleKeyPress",
+            funcName: "bubbles.svgButton.handleKeyPress",
             args: ["{that}", "{arguments}.0"]
         }
     },
 
     events: {
-        onAdd: null
+        onActivate: null
     },
 
     listeners: {
-        "onCreate.renderIcon": {
-            funcName: "bubbles.addButton.renderIcon",
+        "onCreate.render": {
+            funcName: "bubbles.svgButton.render",
             args: ["{that}"]
         },
 
-        "onCreate.bindOnAddClick": {
-            priority: "after:renderIcon",
-            "this": "{that}.dom.addIcon",
+        "onCreate.bindOnActivateClick": {
+            priority: "after:render",
+            "this": "{that}.dom.button",
             method: "click",
-            args: ["{that}.events.onAdd.fire"]
+            args: ["{that}.events.onActivate.fire"]
         },
 
-        "onCreate.bindOnAddKeyPress": {
-            priority: "after:renderIcon",
-            "this": "{that}.dom.addIcon",
+        "onCreate.bindOnKeyPress": {
+            priority: "after:render",
+            "this": "{that}.dom.button",
             method: "keypress",
             args: ["{that}.handleKeyPress"]
         }
     },
 
     selectors: {
-        addIcon: ".bubbles-add-icon"
+        button: ".bubbles-button"
     },
 
     strings: {
-        iconAltText: "Add"
+        altText: "Add"
     },
 
     styles: {
-        hidden: "bubbles-add-icon-hidden"
+        hidden: "bubbles-button-hidden"
     },
 
     markup: {
-        addIcon: "<svg alt='%iconAltText' role='button' " +
-            "tabindex='0' class='bubbles-add-icon' " +
+        button: "<svg alt='%altText' role='button' " +
+            "tabindex='0' class='bubbles-button' " +
             "xmlns='http://www.w3.org/2000/svg' " +
             "width='12' height='16' viewBox='0 0 12 16'>" +
             "<path fill-rule='evenodd' " +
@@ -89,18 +89,18 @@ fluid.defaults("bubbles.addButton", {
     }
 });
 
-bubbles.addButton.renderIcon = function (that) {
+bubbles.svgButton.render = function (that) {
     var renderedMarkup = fluid.stringTemplate(
-        that.options.markup.addIcon,
+        that.options.markup.button,
         that.options.strings
     );
 
     that.container.append(renderedMarkup);
 };
 
-bubbles.addButton.handleKeyPress = function (that, evt) {
+bubbles.svgButton.handleKeyPress = function (that, evt) {
     if (evt.key === " " || evt.key === "Enter") {
-        that.events.onAdd.fire();
+        that.events.onActivate.fire();
         return false;
     }
 };

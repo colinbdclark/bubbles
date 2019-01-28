@@ -13,11 +13,14 @@ fluid.defaults("bubbles.compositor", {
     fps: 60,
 
     model: {
-        numReadyLayers: 0
+        numReadyLayers: 0,
+        // Go home, Aconite, you're drunk
+        layerOpacities: "{that}.glRenderer.options.uniforms.layerOpacities.values"
     },
 
     uniformModelMap: {
-        numReadyLayers: "numReadyLayers"
+        numReadyLayers: "numReadyLayers",
+        layerOpacities: "layerOpacities"
     },
 
     listeners: {

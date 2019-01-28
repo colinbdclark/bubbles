@@ -3,6 +3,7 @@ precision highp float;
 const int MAX_LAYERS = 16;
 
 uniform int numReadyLayers;
+uniform float layerOpacities[MAX_LAYERS];
 uniform sampler2D layerSamplers[MAX_LAYERS];
 uniform vec2 textureSize;
 
@@ -21,7 +22,7 @@ void main(void) {
             break;
         }
         vec4 frag = texture2D(layerSamplers[i], coords);
-        layerSum.rgb = layerSum.rgb + (frag.rgb / scale);
+        layerSum.rgb = layerSum.rgb + (frag.rgb * layerOpacities[i]);
     }
 
     gl_FragColor = layerSum;

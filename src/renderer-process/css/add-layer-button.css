@@ -1,4 +1,4 @@
-.bubbles-add-layer .bubbles-add-icon {
+.bubbles-add-layer .bubbles-button {
     position: absolute;
     z-index: 1;
     top: 92%;
@@ -11,12 +11,12 @@
     height: 3em;
 }
 
-.bubbles-add-layer .bubbles-add-icon:focus,
-.bubbles-add-layer .bubbles-add-icon:hover {
+.bubbles-add-layer .bubbles-button:focus,
+.bubbles-add-layer .bubbles-button:hover {
     border-color: #fff;
     fill: #fff;
 }
 
-.bubbles-add-layer .bubbles-add-icon.bubbles-add-icon-hidden {
+.bubbles-add-layer .bubbles-button.bubbles-button-hidden {
     display: none;
 }
