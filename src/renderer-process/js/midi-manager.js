@@ -44,9 +44,6 @@ fluid.defaults("bubbles.midiManager", {
         midiSource: {
             type: "bubbles.midiSource",
             options: {
-                modelListeners: {
-                },
-
                 components: {
                     sender: "{midiManager}.midiConnector"
                 }

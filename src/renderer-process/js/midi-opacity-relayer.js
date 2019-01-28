@@ -15,11 +15,9 @@ fluid.defaults("bubbles.midiOpacityRelayer", {
     },
 
     modelRelay: [
+        // First, relay the velocity of the specified note path
+        // to this component's model.
         {
-            // Note: This works around an issue in the relay below,
-            // where an "expanded" relay reference can't be included
-            // inside a "singleTransform" block
-            // (i.e. the framework does not resolve it).
             namespace: "noteVelocityfromRelaySource",
             target: "{that}.model.noteVelocity",
             source: {
@@ -30,6 +28,9 @@ fluid.defaults("bubbles.midiOpacityRelayer", {
                 type: "fluid.transforms.identity"
             }
         },
+
+        // Second, transform the velocity to a 0..1 range and
+        // relay it to the target.
         {
             namespace: "midiNoteValueToLayerOpacity",
             priority: "after:noteVelocityfromRelaySource",

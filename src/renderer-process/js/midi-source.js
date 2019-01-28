@@ -21,7 +21,7 @@ fluid.defaults("bubbles.midiSource", {
     modelListeners: {
         "notes.*": {
             excludeSource: "init",
-            funcName: "bubbles.midiSource.recordNumActiveNote",
+            funcName: "bubbles.midiSource.recordNumActiveNotes",
             args: ["{that}", "{change}"]
         }
     },
@@ -62,7 +62,7 @@ fluid.defaults("bubbles.midiSource", {
     }
 });
 
-bubbles.midiSource.recordNumActiveNote = function (that, change) {
+bubbles.midiSource.recordNumActiveNotes = function (that, change) {
     if (change.value > 0 && change.oldValue === 0) {
         that.applier.change("numActiveNotes", that.model.numActiveNotes + 1);
     } else if (change.value === 0 && change.oldValue > 0) {
