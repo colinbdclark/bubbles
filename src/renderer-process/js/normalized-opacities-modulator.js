@@ -10,7 +10,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.normalizedOpacitiesModulator", {
     gradeNames: "bubbles.opacitiesModulator",
 
-    layerOpacities: [
+    opacities: [
         1, 1, 1, 1,
         1, 1, 1, 1,
         1, 1, 1, 1,
@@ -26,7 +26,7 @@ fluid.defaults("bubbles.normalizedOpacitiesModulator", {
     dynamicComponents: {
         relayer: {
             type: "bubbles.normalizedOpacityRelayer",
-            sources: "{that}.options.layerOpacities"
+            sources: "{that}.options.opacities"
         }
     }
 });

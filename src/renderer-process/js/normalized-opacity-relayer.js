@@ -37,7 +37,7 @@ fluid.defaults("bubbles.normalizedOpacityRelayer", {
         {
             target: {
                 context: "relayTarget",
-                segs: ["layerOpacities", "0", "{that}.options.layer"]
+                segs: ["opacities", "0", "{that}.options.layer"]
             },
             source: "{that}.model.opacity",
             backward: {

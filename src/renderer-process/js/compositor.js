@@ -15,12 +15,20 @@ fluid.defaults("bubbles.compositor", {
     model: {
         numReadyLayers: 0,
         // Go home, Aconite, you're drunk
-        layerOpacities: "{that}.glRenderer.options.uniforms.layerOpacities.values"
+        opacities: "{that}.glRenderer.options.uniforms.opacities.values",
+        redScale: "{that}.glRenderer.options.uniforms.redScale.values",
+        greenScale: "{that}.glRenderer.options.uniforms.greenScale.values",
+        blueScale: "{that}.glRenderer.options.uniforms.blueScale.values",
+        clip: "{that}.glRenderer.options.uniforms.clip.values"
     },
 
     uniformModelMap: {
         numReadyLayers: "numReadyLayers",
-        layerOpacities: "layerOpacities"
+        opacities: "opacities",
+        redScale: "redScale",
+        greenScale: "greenScale",
+        blueScale: "blueScale",
+        clip: "clip"
     },
 
     listeners: {

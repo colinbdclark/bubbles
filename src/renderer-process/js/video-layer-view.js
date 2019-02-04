@@ -29,6 +29,11 @@ fluid.defaults("bubbles.videoLayerView", {
     components: {
         compositor: "{composition}.compositor",
 
+        modulationMatrixView: {
+            type: "bubbles.modulationMatrixView",
+            container: "{that}.container"
+        },
+
         videoLayer: {
             type: "bubbles.videoLayer",
             options: {
