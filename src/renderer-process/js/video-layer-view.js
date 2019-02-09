@@ -10,8 +10,6 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.videoLayerView", {
     gradeNames: "fluid.viewComponent",
 
-    layerIdx: 0,
-
     modelRelay: [
         {
             namespace: "mapVideoURLToButtonVisibility",
@@ -30,8 +28,14 @@ fluid.defaults("bubbles.videoLayerView", {
         compositor: "{composition}.compositor",
 
         modulationMatrixView: {
+            createOnEvent: "afterModulationMatrixContainerRendered",
             type: "bubbles.modulationMatrixView",
-            container: "{that}.container"
+            container: "{arguments}.0",
+            options: {
+                model: {
+                    layerIdx: "{videoLayerView}.model.layerIdx"
+                }
+            }
         },
 
         videoLayer: {
@@ -66,7 +70,8 @@ fluid.defaults("bubbles.videoLayerView", {
     },
 
     events: {
-        onVideoAdded: null
+        onVideoAdded: null,
+        afterModulationMatrixContainerRendered: null
     },
 
     listeners: {
@@ -76,9 +81,24 @@ fluid.defaults("bubbles.videoLayerView", {
             args: "{that}.video.element"
         },
 
+        "onCreate.renderModulationMatrixContainer": {
+            funcName: "bubbles.videoLayerView.renderModulationMatrixContainer",
+            args: "{that}"
+        },
+
         "onVideoAdded.updateVideoURL": {
             changePath: "video.url",
             value: "{arguments}.0.0"
         }
+    },
+
+    markup: {
+        modulationMatrixContainer: "<div class='bubbles-modulation-matrix'></div>"
     }
 });
+
+bubbles.videoLayerView.renderModulationMatrixContainer = function (that) {
+    var modulationMatrixContainer = $(that.options.markup.modulationMatrixContainer);
+    that.container.append(modulationMatrixContainer);
+    that.events.afterModulationMatrixContainerRendered.fire(modulationMatrixContainer);
+};

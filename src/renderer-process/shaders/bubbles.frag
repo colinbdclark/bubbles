@@ -3,7 +3,7 @@ precision highp float;
 const int MAX_LAYERS = 16;
 
 uniform int numReadyLayers;
-uniform float opacities[MAX_LAYERS];
+uniform float opacity[MAX_LAYERS];
 uniform float redScale[MAX_LAYERS];
 uniform float greenScale[MAX_LAYERS];
 uniform float blueScale[MAX_LAYERS];
@@ -37,7 +37,7 @@ void main(void) {
                 greenScale[i], blueScale[i]);
 
             layerSum.rgb = layerSum.rgb +
-                (frag.rgb * colourScale.rgb * opacities[i]);
+                (frag.rgb * colourScale.rgb * opacity[i]);
         }
     }
 

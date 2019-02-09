@@ -14,17 +14,80 @@ fluid.defaults("bubbles.modulationView", {
         value: 1.0
     },
 
-    modelRelay: {
-        source: {
-            context: "modulationMatrixView",
-            // TODO: Really bad naming!
-            segs: ["{that}.options.relayedModelPathSeg"]
+    modelRelay: [
+        {
+            source: {
+                context: "modulationMatrixView",
+                segs: ["{that}.options.modulationName"]
+            },
+
+            target: "{that}.model.value",
+
+            singleTransform: {
+                type: "fluid.transforms.identity"
+            }
+        }
+    ],
+
+    bindings: {
+        "value": {
+            selector: "textField",
+            path: "value",
+            rules: {
+                domToModel: {
+                    "": {
+                        transform: {
+                            type: "fluid.transforms.stringToNumber",
+                            inputPath: ""
+                        }
+                    }
+                },
+                modelToDom: {
+                    "": {
+                        transform: {
+                            type: "fluid.transforms.numberToString",
+                            inputPath: ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    events: {
+        afterRendered: null
+    },
+
+    listeners: {
+        "onCreate.render": {
+            funcName: "bubbles.modulationMatrixView.render",
+            args: "{that}"
         },
 
-        target: "{that}.model.value",
-
-        singleTransform: {
-            type: "fluid.transforms.identity"
+        "afterRendered.applyBinding": {
+            funcName: "gpii.binder.applyBinding",
+            args: "{that}"
         }
+    },
+
+    strings: {
+        id: "@expand:fluid.allocateGuid()",
+        label: "{that}.options.label"
+    },
+
+    markup: {
+        textField: "<label for='%id'>%label</label><input class='bubbles-modulation-textfield' type='text' id='%id'>"
+    },
+
+    selectors: {
+        textField: ".bubbles-modulation-textfield"
     }
 });
+
+bubbles.modulationMatrixView.render = function (that) {
+    var rendered = fluid.stringTemplate(that.options.markup.textField,
+        that.options.strings);
+
+    that.container.append(rendered);
+    that.events.afterRendered.fire();
+};

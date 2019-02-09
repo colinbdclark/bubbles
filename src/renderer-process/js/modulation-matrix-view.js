@@ -10,89 +10,94 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.modulationMatrixView", {
     gradeNames: "fluid.viewComponent",
 
+    layerIdx: 0,
+
     model: {
-        // opacity: 1.0,
-        redScale: 1.0,
-        blueScale: 1.0,
-        greenScale: 1.0,
-        clip: 1.0
-        // speed: 1.0,
-        // isPlaying: 1.0
+        layerProperties: {
+            redScale: 1.0,
+            blueScale: 1.0,
+            greenScale: 1.0,
+            clip: 1.0,
+            opacity: 1.0
+        },
+
+        videoProperties: {
+            speed: 1.0,
+            isPlaying: 1.0
+        }
     },
 
     modelListeners: {
-        "*": {
+        "layerProperties.*": {
             namespace: "createViewForModulatableParameter",
-            funcName: "bubbles.modulationMatrixView.parameterListener",
-            args: ["{that}", "{change}"]
+            includeSource: "init",
+            funcName: "{that}.events.onModulatableParameterAdded.fire",
+            args: ["{change}"]
         }
     },
 
     dynamicComponents: {
         modulationView: {
-            createOnEvent: "onModulatableParameterAdded",
+            createOnEvent: "onModulationViewContainerRendered",
             type: "bubbles.modulationView",
-            container: "{that}.container", // TODO: Render something?
+            container: "{arguments}.0",
             options: {
-                relayedModelPathSeg: "{arguments}.0.path.0"
+                modulationName: "{arguments}.1.path.1",
+
+                label: {
+                    expander: {
+                        funcName: "fluid.get",
+                        args: [
+                            "{modulationMatrixView}.options.strings",
+                            "{that}.options.modulationName"
+                        ]
+                    }
+                },
             }
         },
 
         uniformRelayer: {
             createOnEvent: "onModulatableParameterAdded",
-            // TODO: Why doesn't bubbles.relayer work?
-            // Because "you can't do that : P", says Antranig
-            type: "fluid.modelComponent",
+            type: "bubbles.layerUniformRelayer",
             options: {
-                // TODO: Terrible name.
-                relayedModelPathSeg: "{arguments}.0.path.0",
-
-                modelRelay: [
-                    {
-                        namespace: "relay",
-                        source: {
-                            context: "compositor",
-                            segs: [
-                                "{that}.options.relayedModelPathSeg",
-                                "0",
-                                "{videoLayerView}.options.layerIdx"
-                            ]
-                        },
-
-                        // amb26:
-                        // Well, you would not use "segs" at all - but just write an option which contained the path
-                        // And then your reference for "path" would be a reference to your option containing the path
-                        // e.g. target: "{{that}.options.mypath}"
-                        target: {
-                            context: "modulationMatrixView",
-                            segs: [
-                                "{that}.options.relayedModelPathSeg"
-                            ]
-                        },
-
-                        singleTransform: {
-                            type: "fluid.transforms.identity"
-                        }
-                    }
-                ]
+                uniformName: "{arguments}.0.path.1",
+                layerIdx: "{modulationMatrixView}.model.layerIdx",
+                components: {
+                    relaySource: "{compositor}",
+                    relayTarget: "{modulationMatrixView}"
+                }
             }
         }
     },
 
+    strings: {
+        redScale: "Red",
+        blueScale: "Blue",
+        greenScale: "Green",
+        clip: "Clip",
+        opacity: "Opacity"
+    },
+
+    markup: {
+        modulationViewContainer: "<div class='bubbles-modulator'></div>"
+    },
+
     events: {
         onModulatableParameterAdded: null,
+        onModulationViewContainerRendered: null,
         onModulatableParameterRemoved: null
+    },
+
+    listeners: {
+        "onModulatableParameterAdded.renderContainer": {
+            funcName: "bubbles.modulationMatrixView.renderModViewContainer",
+            args: ["{that}", "{arguments}.0"]
+        }
     }
 });
 
-// TODO: This should be refactored so that we track
-// dynamic components by guid in the model
-// (so that they can eventually be destroyed).
-bubbles.modulationMatrixView.parameterListener = function (that, change) {
-    if (change.oldValue === undefined &&
-        change.value !== undefined && change.value !== null) {
-        that.events.onModulatableParameterAdded.fire(change);
-    } else if (change.oldValue !== undefined && change.oldValue !== null && (change.value === undefined || change.value === null)) {
-        that.events.onModulatableParameterRemoved.fire(change);
-    }
+bubbles.modulationMatrixView.renderModViewContainer = function (that, change) {
+    var modViewContainer = $(that.options.markup.modulationViewContainer);
+    that.container.append(modViewContainer);
+    that.events.onModulationViewContainerRendered.fire(modViewContainer, change);
 };
