@@ -10,30 +10,17 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.modulationMatrixView", {
     gradeNames: "fluid.viewComponent",
 
-    layerIdx: 0,
+    layerModulationNames: [
+        "redScale",
+        "blueScale",
+        "greenScale",
+        "opacity",
+        "keyerMin",
+        "keyerMax"
+    ],
 
     model: {
-        layerProperties: {
-            redScale: 1.0,
-            blueScale: 1.0,
-            greenScale: 1.0,
-            clip: 1.0,
-            opacity: 1.0
-        },
-
-        videoProperties: {
-            speed: 1.0,
-            isPlaying: 1.0
-        }
-    },
-
-    modelListeners: {
-        "layerProperties.*": {
-            namespace: "createViewForModulatableParameter",
-            includeSource: "init",
-            funcName: "{that}.events.onModulatableParameterAdded.fire",
-            args: ["{change}"]
-        }
+        speed: "{videoLayerView}.videoLayer.player.model.rate"
     },
 
     dynamicComponents: {
@@ -42,26 +29,17 @@ fluid.defaults("bubbles.modulationMatrixView", {
             type: "bubbles.modulationView",
             container: "{arguments}.0",
             options: {
-                modulationName: "{arguments}.1.path.1",
-
-                label: {
-                    expander: {
-                        funcName: "fluid.get",
-                        args: [
-                            "{modulationMatrixView}.options.strings",
-                            "{that}.options.modulationName"
-                        ]
-                    }
-                },
+                modulationName: "{arguments}.1",
+                label: "{arguments}.2"
             }
         },
 
         uniformRelayer: {
-            createOnEvent: "onModulatableParameterAdded",
             type: "bubbles.layerUniformRelayer",
+            sources: "{that}.options.layerModulationNames",
             options: {
-                uniformName: "{arguments}.0.path.1",
-                layerIdx: "{modulationMatrixView}.model.layerIdx",
+                uniformName: "{source}",
+                layerIdx: "{modulationMatrixView}.options.layerIdx",
                 components: {
                     relaySource: "{compositor}",
                     relayTarget: "{modulationMatrixView}"
@@ -74,8 +52,10 @@ fluid.defaults("bubbles.modulationMatrixView", {
         redScale: "Red",
         blueScale: "Blue",
         greenScale: "Green",
-        clip: "Clip",
-        opacity: "Opacity"
+        opacity: "Opacity",
+        keyerMin: "Keyer Min",
+        keyerMax: "Keyer Max",
+        speed: "Playback Speed"
     },
 
     markup: {
@@ -83,21 +63,26 @@ fluid.defaults("bubbles.modulationMatrixView", {
     },
 
     events: {
-        onModulatableParameterAdded: null,
-        onModulationViewContainerRendered: null,
-        onModulatableParameterRemoved: null
+        onModulationViewContainerRendered: null
     },
 
     listeners: {
-        "onModulatableParameterAdded.renderContainer": {
-            funcName: "bubbles.modulationMatrixView.renderModViewContainer",
-            args: ["{that}", "{arguments}.0"]
+        "onCreate.renderContainers": {
+            funcName: "bubbles.modulationMatrixView.renderModViewContainers",
+            args: ["{that}"]
         }
     }
 });
 
-bubbles.modulationMatrixView.renderModViewContainer = function (that, change) {
+bubbles.modulationMatrixView.renderModViewContainers = function (that) {
+    fluid.each(that.options.strings, function (label, modulationName) {
+        bubbles.modulationMatrixView.renderModViewContainer(that,
+            modulationName, label);
+    });
+};
+
+bubbles.modulationMatrixView.renderModViewContainer = function (that, modulationName, label) {
     var modViewContainer = $(that.options.markup.modulationViewContainer);
     that.container.append(modViewContainer);
-    that.events.onModulationViewContainerRendered.fire(modViewContainer, change);
+    that.events.onModulationViewContainerRendered.fire(modViewContainer, modulationName, label);
 };

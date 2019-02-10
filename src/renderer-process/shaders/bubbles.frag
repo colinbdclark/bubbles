@@ -7,7 +7,8 @@ uniform float opacity[MAX_LAYERS];
 uniform float redScale[MAX_LAYERS];
 uniform float greenScale[MAX_LAYERS];
 uniform float blueScale[MAX_LAYERS];
-uniform float clip[MAX_LAYERS];
+uniform float keyerMin[MAX_LAYERS];
+uniform float keyerMax[MAX_LAYERS];
 uniform sampler2D samplers[MAX_LAYERS];
 uniform vec2 textureSize;
 
@@ -32,7 +33,8 @@ void main(void) {
         vec4 frag = texture2D(samplers[i], coords);
         float luma = luma(frag);
 
-        if (luma <= clip[i]) {
+        // TODO: Add some smoothstepping.
+        if (luma < keyerMin[i] || luma > keyerMax[i]) {
             vec3 colourScale = vec3(redScale[i],
                 greenScale[i], blueScale[i]);
 

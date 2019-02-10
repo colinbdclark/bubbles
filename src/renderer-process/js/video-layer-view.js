@@ -32,9 +32,7 @@ fluid.defaults("bubbles.videoLayerView", {
             type: "bubbles.modulationMatrixView",
             container: "{arguments}.0",
             options: {
-                model: {
-                    layerIdx: "{videoLayerView}.model.layerIdx"
-                }
+                layerIdx: "{videoLayerView}.model.layerIdx"
             }
         },
 

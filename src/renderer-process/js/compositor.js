@@ -19,7 +19,8 @@ fluid.defaults("bubbles.compositor", {
         redScale: "{that}.glRenderer.options.uniforms.redScale.values",
         greenScale: "{that}.glRenderer.options.uniforms.greenScale.values",
         blueScale: "{that}.glRenderer.options.uniforms.blueScale.values",
-        clip: "{that}.glRenderer.options.uniforms.clip.values"
+        keyerMin: "{that}.glRenderer.options.uniforms.keyerMin.values",
+        keyerMax: "{that}.glRenderer.options.uniforms.keyerMax.values"
     },
 
     uniformModelMap: {
@@ -28,7 +29,8 @@ fluid.defaults("bubbles.compositor", {
         redScale: "redScale",
         greenScale: "greenScale",
         blueScale: "blueScale",
-        clip: "clip"
+        keyerMin: "keyerMin",
+        keyerMax: "keyerMax"
     },
 
     listeners: {
