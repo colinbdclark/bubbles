@@ -55,7 +55,7 @@ fluid.defaults("bubbles.modulationMatrixView", {
         opacity: "Opacity",
         keyerMin: "Keyer Min",
         keyerMax: "Keyer Max",
-        speed: "Playback Speed"
+        speed: "Speed"
     },
 
     markup: {
