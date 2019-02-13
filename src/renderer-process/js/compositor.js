@@ -20,7 +20,8 @@ fluid.defaults("bubbles.compositor", {
         greenScale: "{that}.glRenderer.options.uniforms.greenScale.values",
         blueScale: "{that}.glRenderer.options.uniforms.blueScale.values",
         keyerMin: "{that}.glRenderer.options.uniforms.keyerMin.values",
-        keyerMax: "{that}.glRenderer.options.uniforms.keyerMax.values"
+        keyerMax: "{that}.glRenderer.options.uniforms.keyerMax.values",
+        isPlaying: false
     },
 
     uniformModelMap: {
@@ -34,6 +35,6 @@ fluid.defaults("bubbles.compositor", {
     },
 
     listeners: {
-        "onReady.play": "{that}.play()"
+        // "onReady.play": "{that}.play()"
     }
 });

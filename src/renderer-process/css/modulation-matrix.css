@@ -2,27 +2,47 @@
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 50% 50%;
-    width: 50%;
+    width: 60%;
 }
 
-.bubbles-modulator {
+.bubbles-modulation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.bubbles-modulation-label {
     font-size: 60%;
     font-family: sans-serif;
     font-weight: 700;
-    padding: 0.5em;
-    color: #fff;
-    text-align: center;
 }
 
-.bubbles-modulator label {
-    display: block;
+.bubbles-modulation-inlet {
+    height: 2em;
+    width: 2em;
+    border: solid 0.3em #aaa;
+    border-radius: 100%;
+    margin: 0.5em 0em;
+    opacity: 0.5;
 }
 
-.bubbles-modulator input {
-    width: 50%;
-    margin-top: 0.5em;
-    border: none;
-    padding: 0.5em;
-    text-align: center;
-    font-size: 100%;
+.bubbles-modulation-inlet.ui-droppable-active {
+    background-color: #696;
+}
+
+.bubbles-modulation-inlet.ui-droppable-hover {
+    background-color: #9f9;
+    opacity: 1;
+}
+
+.bubbles-bubble {
+    height: 2em;
+    width: 2em;
+    background-color: #fff;
+    border: solid 0.3em #fff;
+    border-radius: 100%;
+    cursor: grab;
+    z-index: 100;
 }

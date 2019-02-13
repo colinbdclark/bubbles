@@ -33,7 +33,8 @@
         "flocking": "2.0.0-dev.20190122T010114Z.3b9023d",
         "infusion-electron": "0.6.0-dev.20190114T195841Z.9a0b8fe.gh-5",
         "normalize.css": "8.0.1",
-        "gpii-binder": "1.0.4"
+        "gpii-binder": "1.0.4",
+        "jquery-ui": "1.12.1"
     },
     "scripts": {
         "test": "node_modules/.bin/electron tests/all-tests.js",

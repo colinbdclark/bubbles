@@ -10,16 +10,49 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.composition", {
     gradeNames: "fluid.viewComponent",
 
+    model: {
+        isPlaying: false
+    },
+
     components: {
         scorePanel: {
             type: "bubbles.scorePanel",
-            container: "{that}.options.selectors.scorePanel"
+            container: "{that}.dom.scorePanel",
+            options: {
+                components: {
+                    layerStack: {
+                        options: {
+                            modelRelay: [
+                                {
+                                    namespace: "numReadyLayersToIsPlaying",
+                                    target: "{composition}.model.isPlaying",
+                                    singleTransform: {
+                                        type: "fluid.transforms.binaryOp",
+                                        left: "{that}.model.numReadyLayers",
+                                        operator: ">",
+                                        right: 0
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+
+        bubblePalette: {
+            type: "bubbles.bubblePalette",
+            container: "{that}.dom.bubblePalette"
         },
 
         compositor: {
             type: "bubbles.compositor",
             container: "{stageView}.dom.stageContainer",
             options: {
+                model: {
+                    isPlaying: "{composition}.model.isPlaying"
+                },
+
                 components: {
                     glRenderer: {
                         type: "bubbles.glRenderer"
@@ -40,6 +73,7 @@ fluid.defaults("bubbles.composition", {
 
     selectors: {
         scorePanel: ".bubbles-score-panel",
-        stage: ".bubbles-stage"
+        stage: ".bubbles-stage",
+        bubblePalette: ".bubbles-bubble-palette"
     }
 });

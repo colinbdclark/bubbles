@@ -16,9 +16,11 @@
         <link href="../css/add-video-button.css" rel="stylesheet">
         <link href="../css/add-layer-button.css" rel="stylesheet">
         <link href="../css/modulation-matrix.css" rel="stylesheet">
+        <link href="../css/bubble-palette.css" rel="stylesheet">
 
         <script src="../js/namespace-electron-globals.js"></script>
         <script src="../../../node_modules/infusion/dist/infusion-framework.js"></script>
+        <script src="../../../node_modules/jquery-ui/ui/widgets/droppable.js"></script>
         <script src="../../../node_modules/gpii-binder/src/js/binder.js"></script>
         <script src="../../../node_modules/gpii-binder/src/js/transforms.js"></script>
         <script src="../../../node_modules/flocking/dist/flocking-base.js"></script>
@@ -57,13 +59,15 @@
         <script src="../js/video-layer-view.js"></script>
         <script src="../js/layer-uniform-relayer.js"></script>
         <script src="../js/modulation-matrix-view.js"></script>
-        <script src="../js/modulation-view.js"></script>
+        <script src="../js/modulation-inlet-view.js"></script>
         <script src="../js/svg-button.js"></script>
         <script src="../js/add-video-button.js"></script>
         <script src="../js/open-file-dialog.js"></script>
         <script src="../js/gl-renderer.js"></script>
         <script src="../js/compositor.js"></script>
         <script src="../js/stage-view.js"></script>
+        <script src="../js/bubble-palette.js"></script>
+        <script src="../js/bubble-view.js"></script>
         <script src="../js/bubbles-composition.js"></script>
     </head>
     <body>
@@ -82,6 +86,11 @@
                         <div class="bubbles-add-layer"></div>
                     </div>
                 </div>
+            </div>
+
+            <div class="bubbles-palette">
+                <div class="bubbles-bubble-palette-title">Bubbles</div>
+                <div class="bubbles-bubble-palette"></div></div>
             </div>
         </div>
 

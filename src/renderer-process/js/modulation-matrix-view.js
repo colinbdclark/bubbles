@@ -26,7 +26,7 @@ fluid.defaults("bubbles.modulationMatrixView", {
     dynamicComponents: {
         modulationView: {
             createOnEvent: "onModulationViewContainerRendered",
-            type: "bubbles.modulationView",
+            type: "bubbles.modulationInletView",
             container: "{arguments}.0",
             options: {
                 modulationName: "{arguments}.1",
@@ -59,7 +59,7 @@ fluid.defaults("bubbles.modulationMatrixView", {
     },
 
     markup: {
-        modulationViewContainer: "<div class='bubbles-modulator'></div>"
+        modulationViewContainer: "<div class='bubbles-modulation'></div>"
     },
 
     events: {
@@ -86,3 +86,4 @@ bubbles.modulationMatrixView.renderModViewContainer = function (that, modulation
     that.container.append(modViewContainer);
     that.events.onModulationViewContainerRendered.fire(modViewContainer, modulationName, label);
 };
+
