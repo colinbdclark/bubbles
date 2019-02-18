@@ -6,9 +6,12 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 */
 "use strict";
 
-var kettle = require("kettle");
+var kettle = require("kettle"),
+    electron = require("infusion-electron");
+
+var pathPrefix = electron.getAppRootPath(electron.appSingleton);
 
 kettle.config.loadConfig({
     configName: "bubbles",
-    configPath: "./src/configs"
+    configPath: pathPrefix + "src/configs"
 });
