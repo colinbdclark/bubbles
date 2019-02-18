@@ -1,5 +1,7 @@
 # Bubbles
 
+![Bubbles logo](images/bubbles-logo.png)
+
 _Bubbles_ is an experimental authoring environment for creating video art using web technologies.
 
 It is developed with [Fluid Infusion](https://github.com/fluid-project/infusion),
