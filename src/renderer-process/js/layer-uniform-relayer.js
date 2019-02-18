@@ -12,10 +12,11 @@ fluid.defaults("bubbles.layerUniformRelayer", {
 
     uniformName: undefined,
     layerIdx: 0,
+    targetModelName: "{that}.options.uniformName",
 
     modelRelay: [
         {
-            namespace: "relay",
+            namespace: "relayFromUniform",
             source: {
                 context: "relaySource",
                 segs: [
@@ -28,7 +29,7 @@ fluid.defaults("bubbles.layerUniformRelayer", {
             target: {
                 context: "relayTarget",
                 segs: [
-                    "{that}.options.uniformName"
+                    "{that}.options.targetModelName"
                 ]
             },
 
