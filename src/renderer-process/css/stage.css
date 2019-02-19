@@ -9,3 +9,7 @@
 .bubbles-stage.bubbles-stage-mouseHidden {
     cursor: none;
 }
+
+.aconite-animator-canvas:fullscreen  {
+    width: 100vw;
+}
