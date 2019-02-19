@@ -8,7 +8,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.modulationMatrixView", {
-    gradeNames: "fluid.viewComponent",
+    gradeNames: "fluid.containerRenderingView",
 
     layerModulationNames: [
         "redScale",
@@ -25,12 +25,12 @@ fluid.defaults("bubbles.modulationMatrixView", {
 
     dynamicComponents: {
         modulationView: {
-            createOnEvent: "onModulationViewContainerRendered",
             type: "bubbles.modulationInletView",
-            container: "{arguments}.0",
+            sources: "{that}.options.strings",
             options: {
-                modulationName: "{arguments}.1",
-                label: "{arguments}.2"
+                parentContainer: "{modulationMatrixView}.container",
+                modulationName: "{sourcePath}",
+                label: "{source}"
             }
         },
 
@@ -59,31 +59,6 @@ fluid.defaults("bubbles.modulationMatrixView", {
     },
 
     markup: {
-        modulationViewContainer: "<div class='bubbles-modulation'></div>"
-    },
-
-    events: {
-        onModulationViewContainerRendered: null
-    },
-
-    listeners: {
-        "onCreate.renderContainers": {
-            funcName: "bubbles.modulationMatrixView.renderModViewContainers",
-            args: ["{that}"]
-        }
+        container: "<div class='bubbles-modulation-matrix'></div>"
     }
 });
-
-bubbles.modulationMatrixView.renderModViewContainers = function (that) {
-    fluid.each(that.options.strings, function (label, modulationName) {
-        bubbles.modulationMatrixView.renderModViewContainer(that,
-            modulationName, label);
-    });
-};
-
-bubbles.modulationMatrixView.renderModViewContainer = function (that, modulationName, label) {
-    var modViewContainer = $(that.options.markup.modulationViewContainer);
-    that.container.append(modViewContainer);
-    that.events.onModulationViewContainerRendered.fire(modViewContainer, modulationName, label);
-};
-

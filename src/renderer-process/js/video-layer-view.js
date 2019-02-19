@@ -28,10 +28,9 @@ fluid.defaults("bubbles.videoLayerView", {
         compositor: "{composition}.compositor",
 
         modulationMatrixView: {
-            createOnEvent: "afterModulationMatrixContainerRendered",
             type: "bubbles.modulationMatrixView",
-            container: "{arguments}.0",
             options: {
+                parentContainer: "{videoLayerView}.container",
                 layerIdx: "{videoLayerView}.model.layerIdx"
             }
         },
@@ -68,35 +67,19 @@ fluid.defaults("bubbles.videoLayerView", {
     },
 
     events: {
-        onVideoAdded: null,
-        afterModulationMatrixContainerRendered: null
+        onVideoAdded: null
     },
 
     listeners: {
         "onCreate.injectVideo": {
             "this": "{that}.container",
-            method: "append",
+            method: "prepend",
             args: "{that}.video.element"
-        },
-
-        "onCreate.renderModulationMatrixContainer": {
-            funcName: "bubbles.videoLayerView.renderModulationMatrixContainer",
-            args: "{that}"
         },
 
         "onVideoAdded.updateVideoURL": {
             changePath: "video.url",
             value: "{arguments}.0.0"
         }
-    },
-
-    markup: {
-        modulationMatrixContainer: "<div class='bubbles-modulation-matrix'></div>"
     }
 });
-
-bubbles.videoLayerView.renderModulationMatrixContainer = function (that) {
-    var modulationMatrixContainer = $(that.options.markup.modulationMatrixContainer);
-    that.container.append(modulationMatrixContainer);
-    that.events.afterModulationMatrixContainerRendered.fire(modulationMatrixContainer);
-};

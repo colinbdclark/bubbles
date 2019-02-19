@@ -8,7 +8,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.modulationInletView", {
-    gradeNames: "fluid.viewComponent",
+    gradeNames: "fluid.containerRenderingView",
 
     modelRelay: [
         {
@@ -54,6 +54,7 @@ fluid.defaults("bubbles.modulationInletView", {
     },
 
     markup: {
+        container: "<div class='bubbles-modulator'></div>",
         label: "<div class='bubbles-modulation-label'>%label</div>",
         inlet: "<div class='bubbles-modulation-inlet' id='%id'></div>"
     },

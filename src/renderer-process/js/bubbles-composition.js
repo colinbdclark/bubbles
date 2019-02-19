@@ -68,6 +68,11 @@ fluid.defaults("bubbles.composition", {
 
         idleMouseNotifier: {
             type: "bubbles.idleMouseNotifier"
+        },
+
+        fullScreenManager: {
+            type: "bubbles.fullScreenManager",
+            container: "{compositor}.dom.stage"
         }
     },
 
