@@ -8,7 +8,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 fluid.defaults("bubbles.modulationView", {
-    gradeNames: "fluid.viewComponent",
+    gradeNames: "fluid.containerRenderingView",
 
     model: {
         value: 1.0
@@ -71,11 +71,12 @@ fluid.defaults("bubbles.modulationView", {
     },
 
     strings: {
-        id: "@expand:fluid.allocateGuid()",
+        id: "{that}.id",
         label: "{that}.options.label"
     },
 
     markup: {
+        container: "<div class='bubbles-modulator'></div>",
         textField: "<label for='%id'>%label</label><input class='bubbles-modulation-textfield' type='text' id='%id'>"
     },
 
