@@ -12,7 +12,7 @@ var bubbles = fluid.registerNamespace("bubbles");
 fluid.defaults("bubbles.idleMouseNotifier", {
     gradeNames: "fluid.modelComponent",
 
-    idleInterval: 5,
+    idleInterval: 2,
 
     model: {
         isMouseIdle: false
