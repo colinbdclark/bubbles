@@ -36,7 +36,7 @@ fluid.defaults("bubbles.midiOpacityRelayer", {
             priority: "after:noteVelocityfromRelaySource",
             target: {
                 context: "relayTarget",
-                segs: ["layerOpacities", "0", "{that}.options.layer"]
+                segs: ["opacity", "0", "{that}.options.layer"]
             },
             singleTransform: {
                 type: "fluid.transforms.binaryOp",

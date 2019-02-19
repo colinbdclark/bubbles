@@ -1,0 +1,28 @@
+.bubbles-modulation-matrix {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    width: 50%;
+}
+
+.bubbles-modulator {
+    font-size: 60%;
+    font-family: sans-serif;
+    font-weight: 700;
+    padding: 0.5em;
+    color: #fff;
+    text-align: center;
+}
+
+.bubbles-modulator label {
+    display: block;
+}
+
+.bubbles-modulator input {
+    width: 50%;
+    margin-top: 0.5em;
+    border: none;
+    padding: 0.5em;
+    text-align: center;
+    font-size: 100%;
+}

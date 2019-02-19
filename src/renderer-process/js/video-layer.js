@@ -45,7 +45,6 @@ fluid.defaults("bubbles.videoLayer", {
     },
 
     listeners: {
-        "onCreate.play": "{that}.play()",
         "{videoLayerView}.compositor.events.onDraw": "{that}.draw()"
     }
 });

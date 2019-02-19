@@ -10,8 +10,6 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 fluid.defaults("bubbles.videoLayerView", {
     gradeNames: "fluid.viewComponent",
 
-    layerIdx: 0,
-
     modelRelay: [
         {
             namespace: "mapVideoURLToButtonVisibility",
@@ -28,6 +26,14 @@ fluid.defaults("bubbles.videoLayerView", {
 
     components: {
         compositor: "{composition}.compositor",
+
+        modulationMatrixView: {
+            type: "bubbles.modulationMatrixView",
+            options: {
+                parentContainer: "{videoLayerView}.container",
+                layerIdx: "{videoLayerView}.model.layerIdx"
+            }
+        },
 
         videoLayer: {
             type: "bubbles.videoLayer",
@@ -67,7 +73,7 @@ fluid.defaults("bubbles.videoLayerView", {
     listeners: {
         "onCreate.injectVideo": {
             "this": "{that}.container",
-            method: "append",
+            method: "prepend",
             args: "{that}.video.element"
         },
 

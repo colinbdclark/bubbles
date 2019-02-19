@@ -28,12 +28,13 @@
         "node-jqunit": "1.1.8"
     },
     "dependencies": {
-        "infusion": "3.0.0-dev.20181204T213346Z.2ca90f6e6",
+        "infusion": "3.0.0-dev.20190212T124747Z.23b4bc89d",
         "kettle": "1.9.0",
         "aconite": "0.10.0",
         "flocking": "2.0.0-dev.20190122T010114Z.3b9023d",
         "infusion-electron": "0.6.0",
-        "normalize.css": "8.0.1"
+        "normalize.css": "8.0.1",
+        "gpii-binder": "1.0.4"
     },
     "scripts": {
         "test": "node_modules/.bin/electron tests/all-tests.js",

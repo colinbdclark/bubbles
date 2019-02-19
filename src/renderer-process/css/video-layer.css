@@ -1,7 +1,9 @@
 .bubbles-layer-card {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 6.25%;
-    padding: 0.5em;
+    padding: 1em;
     border-bottom: 0.1em solid #ddd;
 }
 
@@ -9,7 +11,6 @@
     height: 5em;
     width: 8.86em;
     border: 0.2em solid #555;
-    margin-top: 0.2em;
     border-radius: 1em;
     background-color: #000;
 }

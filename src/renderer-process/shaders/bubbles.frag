@@ -3,9 +3,18 @@ precision highp float;
 const int MAX_LAYERS = 16;
 
 uniform int numReadyLayers;
-uniform float layerOpacities[MAX_LAYERS];
-uniform sampler2D layerSamplers[MAX_LAYERS];
+uniform float opacity[MAX_LAYERS];
+uniform float redScale[MAX_LAYERS];
+uniform float greenScale[MAX_LAYERS];
+uniform float blueScale[MAX_LAYERS];
+uniform float keyerMin[MAX_LAYERS];
+uniform float keyerMax[MAX_LAYERS];
+uniform sampler2D samplers[MAX_LAYERS];
 uniform vec2 textureSize;
+
+float luma (vec4 fragment) {
+    return (fragment.r * 0.2126) + (fragment.g * 0.7152) + (fragment.b * 0.0722);
+}
 
 void main(void) {
     vec2 coords = vec2(gl_FragCoord.x / textureSize.x, gl_FragCoord.y / textureSize.y);
@@ -15,14 +24,23 @@ void main(void) {
 
     // TODO: The "there is no texture bound" warning will always happen,
     // even if the number of iterations is set to be lower (e.g. 1),
-    // or if we only read from layerSamplers[0].
-    // But it will go away if we don't touch layerSamplers at all.
+    // or if we only read from samplers[0].
+    // But it will go away if we don't touch samplers at all.
     for (int i = 0; i < MAX_LAYERS; i++) {
         if (i >= numReadyLayers) {
             break;
         }
-        vec4 frag = texture2D(layerSamplers[i], coords);
-        layerSum.rgb = layerSum.rgb + (frag.rgb * layerOpacities[i]);
+        vec4 frag = texture2D(samplers[i], coords);
+        float luma = luma(frag);
+
+        // TODO: Add some smoothstepping.
+        if (luma < keyerMin[i] || luma > keyerMax[i]) {
+            vec3 colourScale = vec3(redScale[i],
+                greenScale[i], blueScale[i]);
+
+            layerSum.rgb = layerSum.rgb +
+                (frag.rgb * colourScale.rgb * opacity[i]);
+        }
     }
 
     gl_FragColor = layerSum;

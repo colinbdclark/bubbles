@@ -21,7 +21,7 @@ fluid.defaults("bubbles.glRenderer", {
             values: 0
         },
 
-        layerOpacities: {
+        opacity: {
             type: "1fv",
             values: [
                 [
@@ -33,7 +33,67 @@ fluid.defaults("bubbles.glRenderer", {
             ]
         },
 
-        layerSamplers: {
+        redScale: {
+            type: "1fv",
+            values: [
+                [
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0
+                ]
+            ]
+        },
+
+        greenScale: {
+            type: "1fv",
+            values: [
+                [
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0
+                ]
+            ]
+        },
+
+        blueScale: {
+            type: "1fv",
+            values: [
+                [
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0,
+                    1.0, 1.0, 1.0, 1.0
+                ]
+            ]
+        },
+
+        keyerMin: {
+            type: "1fv",
+            values: [
+                [
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0
+                ]
+            ]
+        },
+
+        keyerMax: {
+            type: "1fv",
+            values: [
+                [
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0,
+                    0.0, 0.0, 0.0, 0.0
+                ]
+            ]
+        },
+
+        samplers: {
             type: "1iv",
             values: [
                 [
