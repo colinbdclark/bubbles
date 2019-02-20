@@ -13,7 +13,6 @@ fluid.defaults("bubbles.videoLayer", {
     gradeNames: "aconite.compositableVideo",
 
     model: {
-        layerIdx: 0,
         loop: true
     },
 
