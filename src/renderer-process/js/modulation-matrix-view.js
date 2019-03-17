@@ -23,7 +23,8 @@ fluid.defaults("bubbles.modulationMatrixView", {
     ],
 
     model: {
-        speed: "{videoLayerView}.videoLayer.player.model.rate"
+        speed: "{videoLayerView}.videoLayer.player.model.rate",
+        volume: "{videoLayerView}.video.model.volume"
     },
 
     dynamicComponents: {
@@ -61,7 +62,8 @@ fluid.defaults("bubbles.modulationMatrixView", {
         brightness: "Brightness",
         saturation: "Saturation",
         contrast: "Contrast",
-        speed: "Speed"
+        speed: "Speed",
+        volume: "Volume"
     },
 
     markup: {
