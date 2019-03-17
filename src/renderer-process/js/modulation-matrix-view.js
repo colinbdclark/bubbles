@@ -16,7 +16,10 @@ fluid.defaults("bubbles.modulationMatrixView", {
         "greenScale",
         "opacity",
         "keyerMin",
-        "keyerMax"
+        "keyerMax",
+        "brightness",
+        "contrast",
+        "saturation"
     ],
 
     model: {
@@ -53,8 +56,11 @@ fluid.defaults("bubbles.modulationMatrixView", {
         blueScale: "Blue",
         greenScale: "Green",
         opacity: "Opacity",
-        keyerMin: "Keyer Min",
-        keyerMax: "Keyer Max",
+        keyerMin: "Key Min",
+        keyerMax: "Key Max",
+        brightness: "Brightness",
+        saturation: "Saturation",
+        contrast: "Contrast",
         speed: "Speed"
     },
 
