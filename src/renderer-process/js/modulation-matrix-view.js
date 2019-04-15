@@ -16,11 +16,15 @@ fluid.defaults("bubbles.modulationMatrixView", {
         "greenScale",
         "opacity",
         "keyerMin",
-        "keyerMax"
+        "keyerMax",
+        "brightness",
+        "contrast",
+        "saturation"
     ],
 
     model: {
-        speed: "{videoLayerView}.videoLayer.player.model.rate"
+        speed: "{videoLayerView}.videoLayer.player.model.rate",
+        volume: "{videoLayerView}.video.model.volume"
     },
 
     dynamicComponents: {
@@ -53,9 +57,13 @@ fluid.defaults("bubbles.modulationMatrixView", {
         blueScale: "Blue",
         greenScale: "Green",
         opacity: "Opacity",
-        keyerMin: "Keyer Min",
-        keyerMax: "Keyer Max",
-        speed: "Speed"
+        keyerMin: "Key Min",
+        keyerMax: "Key Max",
+        brightness: "Brightness",
+        saturation: "Saturation",
+        contrast: "Contrast",
+        speed: "Speed",
+        volume: "Volume"
     },
 
     markup: {
