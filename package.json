@@ -20,15 +20,15 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "4.1.0",
+        "electron": "4.1.4",
         "electron-packager": "13.1.1",
         "electron-icon-maker": "0.0.4",
-        "grunt": "1.0.3",
+        "grunt": "1.0.4",
         "gpii-grunt-lint-all": "1.0.5",
         "node-jqunit": "1.1.8"
     },
     "dependencies": {
-        "infusion": "3.0.0-dev.20190212T124747Z.23b4bc89d",
+        "infusion": "3.0.0-dev.20190328T144119Z.ec44dbfab",
         "kettle": "1.10.1",
         "aconite": "0.11.0",
         "flocking": "2.0.0-dev.20190122T010114Z.3b9023d",
