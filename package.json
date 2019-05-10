@@ -41,6 +41,7 @@
         "app": "node_modules/.bin/electron .",
         "make-icons": "node_modules/.bin/electron-icon-maker --input=./images/bubbles-icon-1024px.png --output=./images/",
         "package-win": "node_modules/.bin/electron-packager ./ --platform=win32 --out=./dist --icon=images/icons/win/icon.ico --overwrite",
-        "package-mac": "node_modules/.bin/electron-packager ./ --platform=darwin --out=./dist --icon=images/icons/mac/icon.icns --overwrite"
+        "package-mac": "node_modules/.bin/electron-packager ./ --platform=darwin --out=./dist --icon=images/icons/mac/icon.icns --overwrite",
+        "package-all": "npm run package-mac && npm run package-win"
     }
 }

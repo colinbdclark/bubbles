@@ -7,6 +7,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.scorePanel", {
     gradeNames: "bubbles.panel",
 
@@ -57,8 +59,7 @@ fluid.defaults("bubbles.scorePanel", {
 
 bubbles.scorePanel.updateOpacitiesModulator = function (change, that) {
     var modulatorType = change.value === "flock-no-port-selected" ?
-        that.options.opacitiesModulatorGradeNames.noInput :
-        that.options.opacitiesModulatorGradeNames.midi;
+        that.options.opacitiesModulatorGradeNames.noInput : that.options.opacitiesModulatorGradeNames.midi;
 
-        that.events.onMIDIDeviceSelected.fire(modulatorType);
+    that.events.onMIDIDeviceSelected.fire(modulatorType);
 };

@@ -30,4 +30,3 @@ fluid.defaults("bubbles.normalizedOpacitiesModulator", {
         }
     }
 });
-
