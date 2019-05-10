@@ -1,5 +1,5 @@
 
-<img src="images/bubbles-logo.png" alt="Bubbles logo" width="50%" />
+<img src="images/bubbles-logo.svg" alt="Bubbles logo" width="50%" />
 
 # Bubbles
 
