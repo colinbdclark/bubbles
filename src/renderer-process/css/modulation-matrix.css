@@ -1,11 +1,15 @@
 .bubbles-modulation-matrix {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: auto;
+    width: 60%;
     padding-left: 1em;
+    color: #fff;
+    font-size: 125%;
+    justify-items: center;
+    text-align: center;
 }
 
-.bubbles-modulation {
+.bubbles-modulator {
     display: flex;
     flex-direction: column;
     justify-content: center;
