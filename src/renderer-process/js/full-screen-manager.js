@@ -10,18 +10,26 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 var bubbles = fluid.registerNamespace("bubbles");
 
 fluid.defaults("bubbles.fullScreenManager", {
-    gradeNames: "fluid.viewComponent",
+    gradeNames: ["bubbles.electronRemote", "fluid.viewComponent"],
 
     model: {
-        isStageFullScreen: false
+        isStageFullScreen: false,
+        isMenuBarHidden: "{that}.model.isStageFullScreen"
     },
 
     modelListeners: {
         isStageFullScreen: {
-            namespace: "handleChange",
+            namespace: "handleStageFullScreenChange",
             excludeSource: "init",
-            funcName: "bubbles.fullScreenManager.handleChange",
+            funcName: "bubbles.fullScreenManager.handleStageFullScreenChange",
             args: ["{that}", "{change}.value"]
+        },
+
+        isMenuBarHidden: {
+            namespace: "handleMenuVisibility",
+            excludeSource: "init",
+            funcName: "bubbles.fullScreenManager.handleMenuBarVisibilityChange",
+            args: ["{that}.remote", "{change}.value"]
         }
     },
 
@@ -65,10 +73,18 @@ bubbles.fullScreenManager.handleExitKey = function (that, evt) {
     }
 };
 
-bubbles.fullScreenManager.handleChange = function (that, isStageFullScreen) {
+bubbles.fullScreenManager.handleStageFullScreenChange = function (that, isStageFullScreen) {
     if (isStageFullScreen) {
         that.container[0].webkitRequestFullscreen();
     } else if (document.webkitCurrentFullScreenElement) {
         document.webkitExitFullscreen();
     }
+};
+
+/**
+ * Hides the menu bar on Windows and Linux, which isn't automatic
+ * behaviour when switching to full screen mode.
+ */
+bubbles.fullScreenManager.handleMenuBarVisibilityChange = function (remote, isMenuBarHidden) {
+    remote.getCurrentWindow().setMenuBarVisibility(!isMenuBarHidden);
 };
