@@ -16,8 +16,8 @@ fluid.defaults("bubbles.mainWindow", {
     windowOptions: {
         title: "Bubbles",
         backgroundColor: "#000000",
-        width: 1280,
-        height: 720,
+        width: 1920,
+        height: 1080,
         x: 0,
         y: 0,
         webPreferences: {
