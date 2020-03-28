@@ -36,7 +36,8 @@ fluid.defaults("bubbles.midiSource", {
 
     events: {
         control: "{sender}.events.control",
-        note: "{sender}.events.note"
+        noteOn: "{sender}.events.noteOn",
+        noteOff: "{sender}.events.noteOff"
     },
 
     listeners: {
@@ -51,12 +52,22 @@ fluid.defaults("bubbles.midiSource", {
             ]
         },
 
-        "note.mapToModel": {
+        "noteOn.mapToModel": {
             funcName: "bubbles.midiSource.modelizeMessage",
             args: [
                 "notes",
                 "note",
                 "velocity",
+                "{arguments}.0",
+                "{that}.applier"
+            ]
+        },
+
+        "noteOff.mapToModel": {
+            funcName: "bubbles.midiSource.modelizeNoteOffMessage",
+            args: [
+                "notes",
+                "note",
                 "{arguments}.0",
                 "{that}.applier"
             ]
@@ -79,6 +90,14 @@ bubbles.midiSource.modelizeMessage = function (firstSeg, secondSegKey, valueKey,
     bubbles.midiSource.messageChangeSegs[0] = firstSeg;
     bubbles.midiSource.messageChangeSegs[1] = msg[secondSegKey];
     applier.change(bubbles.midiSource.messageChangeSegs, msg[valueKey]);
+};
+
+// TODO: Fix duplication.
+// This is stupid. The function above is not appropriately generalized.
+bubbles.midiSource.modelizeNoteOffMessage = function (firstSeg, secondSegKey, msg, applier) {
+    bubbles.midiSource.messageChangeSegs[0] = firstSeg;
+    bubbles.midiSource.messageChangeSegs[1] = msg[secondSegKey];
+    applier.change(bubbles.midiSource.messageChangeSegs, 0);
 };
 
 bubbles.midiSource.initMIDIModel = function (numKeys, initialValue) {
