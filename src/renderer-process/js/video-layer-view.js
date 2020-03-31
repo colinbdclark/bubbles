@@ -58,9 +58,17 @@ fluid.defaults("bubbles.videoLayerView", {
                 listeners: {
                     "onActivate.openFileDialog": {
                         namespace: "addFile",
-                        func: "{layerStack}.openFileDialog.open",
-                        args: "{videoLayerView}.events.onVideoAdded.fire"
+                        func: "{videoLayerView}.openFileDialog.show"
                     }
+                }
+            }
+        },
+
+        openFileDialog: {
+            type: "bubbles.openFileDialog",
+            options: {
+                listeners: {
+                    onFilesSelected: "{videoLayerView}.events.onVideoAdded.fire"
                 }
             }
         }

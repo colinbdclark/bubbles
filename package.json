@@ -20,8 +20,8 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "5.0.6",
-        "electron-packager": "14.0.1",
+        "electron": "8.2.0",
+        "electron-packager": "14.2.1",
         "electron-icon-maker": "0.0.4",
         "grunt": "1.0.4",
         "gpii-grunt-lint-all": "1.0.5",

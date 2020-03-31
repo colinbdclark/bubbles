@@ -1,3 +1,4 @@
+// TODO: This should be moved to infusion-electron.
 fluid.defaults("bubbles.electronRemote", {
     gradeNames: "fluid.component",
 

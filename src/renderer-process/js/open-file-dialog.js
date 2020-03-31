@@ -12,22 +12,10 @@ var electron = fluid.registerNamespace("electron"),
 
 // TODO: Move to infusion-electron.
 fluid.defaults("bubbles.openFileDialog", {
-    gradeNames: "fluid.modelComponent",
-
-    members: {
-        remote: {
-            expander: {
-                funcName: "bubbles.openFileDialog.getElectronRemote"
-            }
-        },
-
-        browserWindow: {
-            expander: {
-                funcName: "bubbles.openFileDialog.getCurrentWindow",
-                args: ["{that}.remote"]
-            }
-        }
-    },
+    gradeNames: [
+        "bubbles.electronRemote",
+        "fluid.modelComponent"
+    ],
 
     model: {
         /**
@@ -37,10 +25,11 @@ fluid.defaults("bubbles.openFileDialog", {
         dialogSettings: {
             // These settings shouldn't be migrated to
             // infusion-electron; they are specific to Bubbles.
-            multiSelections: false,
-            openDirectory: false,
+            properties: ["multiSelections", "openFile"],
+
             filters: [
                 {
+                    name: "Movies",
                     extensions: ["mp4", "m4v", "mov", "webm"]
                 }
             ]
@@ -48,22 +37,32 @@ fluid.defaults("bubbles.openFileDialog", {
     },
 
     invokers: {
-        open: {
-            "this": "{that}.remote.dialog",
-            method: "showOpenDialog",
-            args: [
-                "{that}.browserWindow",
-                "{that}.model.dialogSettings",
-                "{arguments}.0"
-            ]
+        show: {
+            funcName: "bubbles.openFileDialog.show",
+            args: ["{that}"]
         }
+    },
+
+    events: {
+        onDialogSuccess: null,
+        onFilesSelected: null,
+        onDialogCancelled: null,
+        onDialogError: null
     }
 });
 
-bubbles.openFileDialog.getElectronRemote = function () {
-    return electron.nodeIntegration.require("electron").remote;
-};
+bubbles.openFileDialog.show = function (that) {
+    var dialogPromise = that.remote.dialog.showOpenDialog(
+        that.remote.getCurrentWindow(), that.model.dialogSettings);
 
-bubbles.openFileDialog.getCurrentWindow = function (remote) {
-    return remote.getCurrentWindow();
+    dialogPromise.then(function (result) {
+        that.events.onDialogSuccess.fire(result);
+        if (result.canceled) {
+            that.events.onDialogCancelled.fire();
+        } else {
+            that.events.onFilesSelected.fire(result.filePaths);
+        }
+    });
+
+    dialogPromise.catch(that.events.onDialogError);
 };
