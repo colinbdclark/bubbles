@@ -36,7 +36,8 @@ fluid.defaults("bubbles.midiSource", {
 
     events: {
         control: "{sender}.events.control",
-        note: "{sender}.events.note"
+        noteOn: "{sender}.events.noteOn",
+        noteOff: "{sender}.events.noteOff"
     },
 
     listeners: {
@@ -51,12 +52,22 @@ fluid.defaults("bubbles.midiSource", {
             ]
         },
 
-        "note.mapToModel": {
+        "noteOn.mapToModel": {
             funcName: "bubbles.midiSource.modelizeMessage",
             args: [
                 "notes",
                 "note",
                 "velocity",
+                "{arguments}.0",
+                "{that}.applier"
+            ]
+        },
+
+        "noteOff.mapToModel": {
+            funcName: "bubbles.midiSource.modelizeNoteOffMessage",
+            args: [
+                "notes",
+                "note",
                 "{arguments}.0",
                 "{that}.applier"
             ]
@@ -75,10 +86,33 @@ bubbles.midiSource.recordNumActiveNotes = function (that, change) {
 // Save garbage, reuse the change segments array.
 bubbles.midiSource.messageChangeSegs = new Array(2);
 
-bubbles.midiSource.modelizeMessage = function (firstSeg, secondSegKey, valueKey, msg, applier) {
+bubbles.midiSource.applyMIDIMessageValue = function (firstSeg, secondSegKey, msg, value, applier) {
     bubbles.midiSource.messageChangeSegs[0] = firstSeg;
     bubbles.midiSource.messageChangeSegs[1] = msg[secondSegKey];
-    applier.change(bubbles.midiSource.messageChangeSegs, msg[valueKey]);
+    applier.change(bubbles.midiSource.messageChangeSegs, value);
+};
+
+bubbles.midiSource.modelizeMessage = function (firstSeg, secondSegKey, valueKey, msg, applier) {
+    var value = msg[valueKey];
+    bubbles.midiSource.applyMIDIMessageValue(firstSeg, secondSegKey,
+        msg, value, applier);
+};
+
+bubbles.midiSource.modelizeNoteOffMessage = function (firstSeg, secondSegKey,
+    msg, applier) {
+    // Regardless of the incoming release velocity, normalize the note's
+    // velocity to zero.
+    //
+    // This is required due to Bubbles' assumption that any MIDI note
+    // with a non-zero velocity is active (i.e. "on").
+    // A more authentic modelization of MIDI's semantic
+    // should involve a separate boolean value in each note's model,
+    // signifying whether or not the note is currently active.
+    //
+    // TODO: Bubbles should support non-zero note off velocities,
+    // perhaps by mapping it to a fade out trigger or something?
+    bubbles.midiSource.applyMIDIMessageValue(firstSeg, secondSegKey,
+        msg, 0, applier);
 };
 
 bubbles.midiSource.initMIDIModel = function (numKeys, initialValue) {
