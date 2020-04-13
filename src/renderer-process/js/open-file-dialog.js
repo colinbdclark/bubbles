@@ -30,7 +30,7 @@ fluid.defaults("bubbles.openFileDialog", {
             filters: [
                 {
                     name: "Movies",
-                    extensions: ["mp4", "m4v", "mov", "webm"]
+                    extensions: ["mp4", "m4v", "mov", "webm", "mkv", "avi"]
                 }
             ]
         }
