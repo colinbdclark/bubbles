@@ -1,7 +1,7 @@
 {
     "name": "video-bubbles",
     "productName": "Bubbles",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "author": "Colin Clark",
     "repository": {
         "type": "git",
@@ -20,21 +20,21 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "5.0.6",
-        "electron-packager": "14.0.1",
+        "electron": "8.2.1",
+        "electron-packager": "14.2.1",
         "electron-icon-maker": "0.0.4",
-        "grunt": "1.0.4",
-        "gpii-grunt-lint-all": "1.0.5",
+        "grunt": "1.1.0",
+        "gpii-grunt-lint-all": "1.0.7",
         "node-jqunit": "1.1.8"
     },
     "dependencies": {
-        "infusion": "3.0.0-dev.20190328T144119Z.ec44dbfab",
-        "kettle": "1.11.0",
-        "aconite": "0.11.1",
+        "infusion": "3.0.0-dev.20200326T173810Z.24ddb2718",
+        "kettle": "1.12.0",
+        "aconite": "0.11.2",
         "flocking": "2.0.1",
-        "infusion-electron": "0.6.0",
+        "infusion-electron": "0.7.0",
         "normalize.css": "8.0.1",
-        "gpii-binder": "1.0.5"
+        "gpii-binder": "1.1.0"
     },
     "scripts": {
         "test": "node_modules/.bin/electron tests/all-tests.js",
