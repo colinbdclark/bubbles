@@ -7,8 +7,9 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
-var electron = fluid.registerNamespace("electron"),
-    bubbles = fluid.registerNamespace("bubbles");
+var bubbles = fluid.registerNamespace("bubbles");
+
+fluid.registerNamespace("electron");
 
 // TODO: Move to infusion-electron.
 fluid.defaults("bubbles.openFileDialog", {

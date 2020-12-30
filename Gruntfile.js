@@ -12,7 +12,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks("gpii-grunt-lint-all");
+    grunt.loadNpmTasks("fluid-grunt-lint-all");
     grunt.registerTask("lint", "Perform all standard lint checks.", ["lint-all"]);
 
     grunt.registerTask("default", ["lint"]);

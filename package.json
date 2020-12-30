@@ -20,26 +20,26 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "8.2.1",
-        "electron-packager": "14.2.1",
-        "electron-icon-maker": "0.0.4",
-        "grunt": "1.1.0",
-        "gpii-grunt-lint-all": "1.0.7",
+        "electron": "11.1.1",
+        "electron-packager": "15.2.0",
+        "electron-icon-builder": "2.0.1",
+        "grunt": "1.3.0",
+        "fluid-grunt-lint-all": "2.0.0",
         "node-jqunit": "1.1.8"
     },
     "dependencies": {
         "infusion": "3.0.0-dev.20200326T173810Z.24ddb2718",
-        "kettle": "1.12.0",
+        "kettle": "2.0.0",
         "aconite": "0.11.2",
-        "flocking": "2.0.1",
-        "infusion-electron": "0.7.0",
+        "flocking": "2.0.2",
+        "infusion-electron": "0.8.0",
         "normalize.css": "8.0.1",
-        "gpii-binder": "1.1.0"
+        "fluid-binder": "1.1.1"
     },
     "scripts": {
         "test": "node_modules/.bin/electron tests/all-tests.js",
         "app": "node_modules/.bin/electron .",
-        "make-icons": "node_modules/.bin/electron-icon-maker --input=./images/bubbles-icon-1024px.png --output=./images/",
+        "make-icons": "node_modules/.bin/electron-icon-builder --input=./images/bubbles-icon-1024px.png --output=./images/",
         "package-win": "node_modules/.bin/electron-packager ./ --platform=win32 --out=./dist --icon=images/icons/win/icon.ico --overwrite",
         "package-mac": "node_modules/.bin/electron-packager ./ --platform=darwin --out=./dist --icon=images/icons/mac/icon.icns --overwrite",
         "package-all": "npm run package-mac && npm run package-win"
