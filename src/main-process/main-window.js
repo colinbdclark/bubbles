@@ -21,7 +21,9 @@ fluid.defaults("bubbles.mainWindow", {
         x: 0,
         y: 0,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
         }
     },
 

@@ -67,7 +67,7 @@ fluid.defaults("bubbles.modulationView", {
         },
 
         "afterRendered.applyBinding": {
-            funcName: "gpii.binder.applyBinding",
+            funcName: "fluid.binder.applyBinding",
             args: "{that}"
         }
     },

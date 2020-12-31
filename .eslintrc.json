@@ -2,5 +2,13 @@
     "extends": "eslint-config-fluid",
     "env": {
         "node": true
+    },
+    "rules": {
+        "dot-notation": [
+            "error",
+            {
+                "allowKeywords": true
+            }
+        ]
     }
 }
