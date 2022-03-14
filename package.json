@@ -22,7 +22,7 @@
     "devDependencies": {
         "electron": "17.1.2",
         "electron-icon-builder": "2.0.1",
-        "electron-packager": "^15.4.0",
+        "electron-packager": "15.4.0",
         "fluid-lint-all": "1.1.5",
         "node-jqunit": "1.1.9"
     },
