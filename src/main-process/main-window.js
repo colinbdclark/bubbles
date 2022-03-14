@@ -51,6 +51,11 @@ fluid.defaults("bubbles.mainWindow", {
     },
 
     listeners: {
+        "onCreate.enableRemote": {
+            funcName: "bubbles.mainWindow.enableRemote",
+            args: ["{that}"]
+        },
+
         // This should help avoid flickering.
         "onReadyToShow.maximize": {
             priority: "before:show",
@@ -59,6 +64,11 @@ fluid.defaults("bubbles.mainWindow", {
         }
     }
 });
+
+// TODO: Move to infusion-electron
+bubbles.mainWindow.enableRemote = function (that) {
+    require("@electron/remote/main").enable(that.win.webContents);
+};
 
 // TODO: Move to infusion-electron
 bubbles.mainWindow.handleMaximizedChange = function (win, change) {
