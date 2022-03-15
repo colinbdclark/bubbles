@@ -44,6 +44,10 @@ fluid.defaults("bubbles.scorePanel", {
                     }
                 }
             }
+        },
+
+        oscSource: {
+            type: "bubbles.oscSource"
         }
     },
 

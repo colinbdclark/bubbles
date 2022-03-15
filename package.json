@@ -1,7 +1,7 @@
 {
     "name": "video-bubbles",
     "productName": "Bubbles",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "author": "Colin Clark",
     "repository": {
         "type": "git",
@@ -34,7 +34,8 @@
         "infusion": "3.0.0",
         "infusion-electron": "0.8.1",
         "kettle": "2.3.0",
-        "normalize.css": "8.0.1"
+        "normalize.css": "8.0.1",
+        "osc": "2.4.2"
     },
     "overrides": {
         "jquery": "3.6.0",
