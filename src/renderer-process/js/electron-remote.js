@@ -9,10 +9,10 @@ fluid.defaults("bubbles.electronRemote", {
             expander: {
                 this: "electron.nodeIntegration",
                 method: "require",
-                args: ["electron"]
+                args: ["@electron/remote"]
             }
         },
 
-        remote: "{that}.electron.remote"
+        remote: "{that}.electron"
     }
 });

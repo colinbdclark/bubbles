@@ -1,17 +1,17 @@
 .bubbles-layer-card {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 6.25%;
-    padding: 1em;
     border-bottom: 0.1em solid #ddd;
+    display: flex;
+    height: 6.25%;
+    justify-content: space-between;
+    padding: 1em;
+    position: relative;
 }
 
 .bubbles-layer-card video {
-    height: 5em;
-    width: 8.86em;
+    background-color: #000;
     border: 0.2em solid #555;
     border-radius: 1em;
-    background-color: #000;
+    height: 5em;
+    width: 8.86em;
 }

@@ -1,7 +1,6 @@
+# Bubbles
 
 <img src="images/bubbles-logo.svg" alt="Bubbles logo" width="50%" />
-
-# Bubbles
 
 _Bubbles_ is an experimental authoring environment for creating video art using web technologies.
 

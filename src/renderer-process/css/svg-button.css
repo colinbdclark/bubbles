@@ -1,6 +1,6 @@
 .bubbles-button:focus {
-    outline: none;
     fill: #fff;
+    outline: none;
 }
 
 .bubbles-button:hover {

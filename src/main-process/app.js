@@ -8,6 +8,7 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 "use strict";
 
 var fluid = require("infusion");
+var bubbles = fluid.registerNamespace("bubbles");
 
 fluid.defaults("bubbles.app", {
     gradeNames: "electron.app",
@@ -17,5 +18,16 @@ fluid.defaults("bubbles.app", {
             createOnEvent: "onReady",
             type: "bubbles.mainWindow"
         }
+    },
+
+    listeners: {
+        "onCreate.initializeElectronRemote": {
+            funcName: "bubbles.app.initializeElectronRemote"
+        }
     }
 });
+
+// TODO: Move to infusion-electron.
+bubbles.app.initializeElectronRemote = function () {
+    require("@electron/remote/main").initialize();
+};

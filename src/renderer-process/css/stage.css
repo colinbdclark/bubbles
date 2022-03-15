@@ -1,15 +1,15 @@
 .bubbles-stage {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100vw;
+    display: flex;
     height: 100vh;
+    justify-content: center;
+    width: 100vw;
 }
 
 .bubbles-stage.bubbles-stage-mouseHidden {
     cursor: none;
 }
 
-.aconite-animator-canvas:fullscreen  {
+.aconite-animator-canvas:fullscreen {
     width: 100vw;
 }

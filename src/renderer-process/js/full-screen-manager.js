@@ -85,8 +85,8 @@ bubbles.fullScreenManager.handleStageFullScreenChange = function (that, isStageF
  * Hides the menu bar on Windows and Linux, which isn't automatic
  * behaviour when switching to full screen mode.
  *
- * @param {BrowserWindow} remote the electron remote object for this window
- * @param {Boolean} isMenuBarHidden the current state of the menu bar
+ * @param {BrowserWindow} remote - the electron remote object for this window
+ * @param {Boolean} isMenuBarHidden - the current state of the menu bar
  */
 bubbles.fullScreenManager.handleMenuBarVisibilityChange = function (remote, isMenuBarHidden) {
     remote.getCurrentWindow().setMenuBarVisibility(!isMenuBarHidden);
