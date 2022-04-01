@@ -28,6 +28,11 @@ fluid.defaults("bubbles.oscPort", {
         open: {
             "this": "{that}.rawOSCPort",
             method: "open"
+        },
+
+        close: {
+            funcName: "bubbles.oscPort.closePort",
+            args: ["{that}.rawOSCPort"]
         }
     },
 
@@ -80,4 +85,11 @@ bubbles.oscPort.createPort = function (that) {
     var o = fluid.copy(that.options.oscPortOptions);
     var rawOSCPort = new PortConstructor(o);
     that.rawOSCPort = rawOSCPort;
+};
+
+bubbles.oscPort.closePort = function (rawOSCPort) {
+    // osc.js has a bug where closed osc.UDPPorts can't be reopened.
+    // This is a workaround.
+    rawOSCPort.close();
+    rawOSCPort.socket = undefined;
 };

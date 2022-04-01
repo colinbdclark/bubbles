@@ -12,7 +12,13 @@ var bubbles = fluid.registerNamespace("bubbles");
 fluid.defaults("bubbles.oscSource", {
     gradeNames: "fluid.modelComponent",
 
+    oscPortOptions: {
+        localAddress: "0.0.0.0",
+        localPort: 57122
+    },
+
     model: {
+        isListening: false,
         /*
         layers: {
             0: {
@@ -34,9 +40,12 @@ fluid.defaults("bubbles.oscSource", {
         */
     },
 
-    oscPortOptions: {
-        localAddress: "0.0.0.0",
-        localPort: 57122
+    modelListeners: {
+        isListening: {
+            funcName: "bubbles.oscSource.toggleListening",
+            args: ["{that}", "{change}.value"],
+            excludeSource: "init"
+        }
     },
 
     components: {
@@ -60,8 +69,6 @@ fluid.defaults("bubbles.oscSource", {
     },
 
     listeners: {
-        "onCreate.openPort": "{oscPort}.open()",
-
         "onMessage.modelizeOSC": {
             funcName: "bubbles.oscSource.modelizeOSCMessage",
             args: ["{that}", "{arguments}.0"]
@@ -80,4 +87,12 @@ bubbles.oscSource.modelizeOSCMessage = function (that, msg) {
     var path = msg.address.slice(startIdx, endIdx).replaceAll("/", ".");
 
     that.applier.change(path, msg.args[0]);
+};
+
+bubbles.oscSource.toggleListening = function (that, isListening) {
+    if (isListening) {
+        that.oscPort.open();
+    } else {
+        that.oscPort.close();
+    }
 };

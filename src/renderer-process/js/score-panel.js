@@ -55,9 +55,18 @@ fluid.defaults("bubbles.scorePanel", {
         onMIDIDeviceSelected: null
     },
 
+    listeners: {
+        // TODO: Replace with fluid-binder.
+        "onCreate.bindOSCCheckbox": {
+            funcName: "bubbles.scorePanel.bindOSCCheckbox",
+            args: ["{that}"]
+        }
+    },
+
     selectors: {
         layerStack: ".bubbles-layer-stack",
-        midiPortSelector: ".bubbles-midi-port-selector"
+        midiPortSelector: ".bubbles-midi-port-selector",
+        oscCheckbox: ".bubbles-osc-checkbox"
     }
 });
 
@@ -66,4 +75,11 @@ bubbles.scorePanel.updateOpacitiesModulator = function (change, that) {
         that.options.opacitiesModulatorGradeNames.noInput : that.options.opacitiesModulatorGradeNames.midi;
 
     that.events.onMIDIDeviceSelected.fire(modulatorType);
+};
+
+bubbles.scorePanel.bindOSCCheckbox = function (that) {
+    let checkbox = that.locate("oscCheckbox");
+    checkbox[0].addEventListener("change", function (evt) {
+        that.oscSource.applier.change("isListening", evt.target.checked);
+    });
 };
