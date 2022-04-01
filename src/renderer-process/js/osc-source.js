@@ -23,8 +23,8 @@ fluid.defaults("bubbles.oscSource", {
                 keyMin: 0,
                 keyMax: 0,
                 brightness: 0,
-                saturation: 0,
                 contrast: 0,
+                saturation: 0,
                 speed: 0,
                 volume: 0
             },

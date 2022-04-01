@@ -22,6 +22,20 @@ fluid.defaults("bubbles.modulationMatrixView", {
         "saturation"
     ],
 
+    oscModulationNames: [
+        "redScale",
+        "blueScale",
+        "greenScale",
+        "opacity",
+        "keyerMin",
+        "keyerMax",
+        "brightness",
+        "contrast",
+        "saturation",
+        "speed",
+        "volume"
+    ],
+
     model: {
         speed: "{videoLayerView}.videoLayer.player.model.rate",
         volume: "{videoLayerView}.video.model.volume"
@@ -46,6 +60,19 @@ fluid.defaults("bubbles.modulationMatrixView", {
                 layerIdx: "{modulationMatrixView}.options.layerIdx",
                 components: {
                     relaySource: "{compositor}",
+                    relayTarget: "{modulationMatrixView}"
+                }
+            }
+        },
+
+        oscRelayer: {
+            type: "bubbles.oscRelayer",
+            sources: "{that}.options.oscModulationNames",
+            options: {
+                modulationName: "{source}",
+                layerIdx: "{modulationMatrixView}.options.layerIdx",
+                components: {
+                    relaySource: "{oscSource}",
                     relayTarget: "{modulationMatrixView}"
                 }
             }
