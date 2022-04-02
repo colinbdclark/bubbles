@@ -17,6 +17,15 @@ fluid.defaults("bubbles.oscSource", {
         localPort: 57122
     },
 
+    // ~2 Hz cutoff frequency.
+    //   - Normalized frequency (Fc) = (cutoffFreq / sampleRate);
+    //   - b1 coefficient = exp(-2.0 * M_PI * Fc)
+    smoothCoefficient: 0.6,
+
+    members: {
+        lpfState: {}
+    },
+
     model: {
         isListening: false,
         /*
@@ -78,6 +87,7 @@ fluid.defaults("bubbles.oscSource", {
 
 bubbles.oscSource.modelizeOSCMessage = function (that, msg) {
     var address = msg.address;
+    var value = msg.args[0];
     var startIdx = 1;
     var endIdx = address[address.length - 1] === "/" ?
         address.length - 1 : address.length;
@@ -86,7 +96,22 @@ bubbles.oscSource.modelizeOSCMessage = function (that, msg) {
     // Infusion-style path.
     var path = msg.address.slice(startIdx, endIdx).replaceAll("/", ".");
 
-    that.applier.change(path, msg.args[0]);
+    var filteredValue = bubbles.oscSource.smoothValue(that, path, value);
+    that.applier.change(path, filteredValue);
+};
+
+bubbles.oscSource.smoothValue = function (that, path, value) {
+    // Low pass filter to smooth incoming values.
+    var lpfStateForPath = that.lpfState[path];
+    if (!lpfStateForPath) {
+        that.lpfState[path] = lpfStateForPath = {z1: 0.0};
+    }
+
+    var filteredValue = bubbles.onePoleFilter(value, lpfStateForPath.z1,
+        that.options.smoothCoefficient);
+    lpfStateForPath.z1 = filteredValue;
+
+    return filteredValue;
 };
 
 bubbles.oscSource.toggleListening = function (that, isListening) {
