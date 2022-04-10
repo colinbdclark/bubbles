@@ -22,10 +22,36 @@ fluid.defaults("bubbles.modulationMatrixView", {
         "saturation"
     ],
 
+    oscModulationNames: [
+        "redScale",
+        "blueScale",
+        "greenScale",
+        "opacity",
+        "keyerMin",
+        "keyerMax",
+        "brightness",
+        "contrast",
+        "saturation",
+        "speed",
+        "volume"
+    ],
+
     model: {
-        speed: "{videoLayerView}.videoLayer.player.model.rate",
+        speed: 1.0,
         volume: "{videoLayerView}.video.model.volume"
     },
+
+    modelRelay: [
+        {
+            namespace: "clampSpeedToRatesChromiumCanHandle",
+            target: "{videoLayerView}.videoLayer.player.model.rate",
+            singleTransform: {
+                type: "fluid.transforms.free",
+                func: "bubbles.modulationMatrixView.clampSpeed",
+                args: ["{that}.model.speed"]
+            }
+        }
+    ],
 
     dynamicComponents: {
         modulationView: {
@@ -46,6 +72,19 @@ fluid.defaults("bubbles.modulationMatrixView", {
                 layerIdx: "{modulationMatrixView}.options.layerIdx",
                 components: {
                     relaySource: "{compositor}",
+                    relayTarget: "{modulationMatrixView}"
+                }
+            }
+        },
+
+        oscRelayer: {
+            type: "bubbles.oscRelayer",
+            sources: "{that}.options.oscModulationNames",
+            options: {
+                modulationName: "{source}",
+                layerIdx: "{modulationMatrixView}.options.layerIdx",
+                components: {
+                    relaySource: "{oscSource}",
                     relayTarget: "{modulationMatrixView}"
                 }
             }
@@ -70,3 +109,17 @@ fluid.defaults("bubbles.modulationMatrixView", {
         container: "<div class='bubbles-modulation-matrix'></div>"
     }
 });
+
+bubbles.modulationMatrixView.clampSpeed = function (speed) {
+    // Chrome seems to have some odd range requirements
+    // for video playback rates these days.
+    if (speed < 0.05) {
+        return 0.0;
+    }
+
+    if (speed >= 0.05 && speed < 0.1) {
+        return 0.1;
+    }
+
+    return speed;
+};

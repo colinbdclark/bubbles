@@ -43,6 +43,11 @@
         <script src="../js/flocking-midi-select-ng/auto-midi-system.js"></script>
         <script src="../js/opacities-modulator.js"></script>
         <script src="../js/opacity-relayer.js"></script>
+        <script src="../js/osc-port.js"></script>
+        <script src="../js/osc-udp-port.js"></script>
+        <script src="../js/one-pole-filter.js"></script>
+        <script src="../js/osc-source.js"></script>
+        <script src="../js/osc-relayer.js"></script>
         <script src="../js/midi-source.js"></script>
         <script src="../js/midi-manager.js"></script>
         <script src="../js/midi-opacity-relayer.js"></script>
@@ -78,7 +83,10 @@
 
             <div class="bubbles-score-panel bubbles-panel">
                 <div class="bubbles-midi-port-selector"></div>
-
+                <div class="bubbles-osc-panel">
+                    <input class="bubbles-osc-checkbox" type="checkbox" id="osc" name="osc">
+                    <label for="osc">Listen for Open Sound Control Messages</label>
+                </div>
                 <div class="scroller">
                     <div class="bubbles-layer-stack">
                         <div class="bubbles-add-layer"></div>
