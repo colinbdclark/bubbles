@@ -29,11 +29,12 @@ fluid.defaults("bubbles.oscSource", {
     model: {
         isListening: false,
         /*
+        gain: 1.0,
         layers: {
             0: {
-                r: 0,
-                g: 0,
-                b: 0,
+                redScale: 0,
+                greenScale: 0,
+                blueScale: 0,
                 opacity: 0,
                 keyMin: 0,
                 keyMax: 0,

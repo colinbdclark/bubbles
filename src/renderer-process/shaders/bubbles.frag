@@ -4,6 +4,7 @@ const int MAX_LAYERS = 16;
 const vec3 W = vec3(0.2126, 0.7152, 0.0722);
 
 uniform int numReadyLayers;
+uniform float gain;
 uniform float opacity[MAX_LAYERS];
 uniform float redScale[MAX_LAYERS];
 uniform float greenScale[MAX_LAYERS];
@@ -46,16 +47,31 @@ void main(void) {
         }
         vec4 frag = texture2D(samplers[i], coords);
         vec3 colour = frag.rgb;
+
+        // 1. Apply brightness and contrast.
         colour = brightnessContrast(colour, brightness[i], contrast[i]);
+
+        // 2. Scale colour channels.
+        vec3 colourScale = vec3(redScale[i], greenScale[i],
+            blueScale[i]);
+        colour = colour * colourScale;
+
+        // 3. Apply saturation.
         colour = saturate(colour, saturation[i]);
 
-        vec3 colourScale = vec3(redScale[i], greenScale[i], blueScale[i]);
+        // 4. Adjust overall opacity
+        colour = colour * opacity[i];
 
+        // 5. Apply luma key.
         // TODO: Add some smoothstepping.
         float luma = luma(colour);
         if (luma < keyerMin[i] || luma > keyerMax[i]) {
-            layerSum = layerSum + (colour * colourScale * opacity[i]);
+            // 6. Sum pixel with other layers if it isn't keyed out.
+            layerSum = layerSum + colour;
         }
+
+        // 7. Apply gain to all layers.
+        layerSum = layerSum * gain;
     }
 
     gl_FragColor = vec4(layerSum.r, layerSum.g, layerSum.b, 1.0);

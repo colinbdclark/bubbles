@@ -21,6 +21,11 @@ fluid.defaults("bubbles.glRenderer", {
             values: 0
         },
 
+        gain: {
+            type: "1f",
+            values: 1.0
+        },
+
         opacity: {
             type: "1fv",
             values: [

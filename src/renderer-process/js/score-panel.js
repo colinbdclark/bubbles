@@ -46,8 +46,21 @@ fluid.defaults("bubbles.scorePanel", {
             }
         },
 
+        // TODO: Provide a way for users to choose the
+        // port on which Bubbles is listening for OSC.
         oscSource: {
-            type: "bubbles.oscSource"
+            type: "bubbles.oscSource",
+            options: {
+                model: {
+                    // Gain is relayed directly because
+                    // it is not layer-specific.
+                    // Other OSC values are relayed in
+                    // each layer's modulationMatrixView.
+
+                    // TODO: Create an editable view for this.
+                    gain: "{compositor}.model.gain"
+                }
+            }
         }
     },
 

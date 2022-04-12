@@ -14,6 +14,7 @@ fluid.defaults("bubbles.compositor", {
 
     model: {
         numReadyLayers: 0,
+        gain: 1.0,
         // Go home, Aconite, you're drunk
         opacity: "{that}.glRenderer.options.uniforms.opacity.values",
         redScale: "{that}.glRenderer.options.uniforms.redScale.values",
@@ -28,6 +29,7 @@ fluid.defaults("bubbles.compositor", {
 
     uniformModelMap: {
         numReadyLayers: "numReadyLayers",
+        gain: "gain",
         opacity: "opacity",
         redScale: "redScale",
         greenScale: "greenScale",
