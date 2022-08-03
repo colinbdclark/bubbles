@@ -27,7 +27,7 @@ fluid.defaults("bubbles.oscSource", {
     },
 
     model: {
-        isListening: false,
+        isListening: false
         /*
         gain: 1.0,
         layers: {
