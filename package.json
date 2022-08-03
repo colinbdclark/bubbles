@@ -1,7 +1,7 @@
 {
     "name": "video-bubbles",
     "productName": "Bubbles",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "author": "Colin Clark",
     "repository": {
         "type": "git",
@@ -20,26 +20,26 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "17.4.0",
+        "electron": "20.0.1",
         "electron-icon-builder": "2.0.1",
-        "electron-packager": "15.4.0",
+        "electron-packager": "15.5.1",
         "fluid-lint-all": "1.2.2",
         "node-jqunit": "1.1.9"
     },
     "dependencies": {
-        "@electron/remote": "2.0.7",
+        "@electron/remote": "2.0.8",
         "aconite": "0.11.2",
         "flocking": "2.0.2",
         "fluid-binder": "1.1.2",
-        "infusion": "3.0.0",
+        "infusion": "3.0.1",
         "infusion-electron": "0.8.1",
         "kettle": "2.3.0",
         "normalize.css": "8.0.1",
-        "osc": "2.4.2"
+        "osc": "2.4.3"
     },
     "overrides": {
         "jquery": "3.6.0",
-        "codemirror": "5.65.2"
+        "codemirror": "5.65.7"
     },
     "scripts": {
         "lint": "fluid-lint-all",
