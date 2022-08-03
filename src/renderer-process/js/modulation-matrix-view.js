@@ -7,6 +7,8 @@ https://github.com/colinbdclark/bubbles/raw/master/LICENSE
 
 "use strict";
 
+var bubbles = fluid.registerNamespace("bubbles");
+
 fluid.defaults("bubbles.modulationMatrixView", {
     gradeNames: "fluid.containerRenderingView",
 

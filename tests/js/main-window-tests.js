@@ -16,7 +16,26 @@ fluid.defaults("bubbles.tests.mainWindowTestEnvironment", {
 
     components: {
         app: {
-            type: "bubbles.app"
+            type: "bubbles.app",
+            options: {
+                components: {
+                    mainWindow: {
+                        options: {
+                            model: {
+                                url: {
+                                    expander: {
+                                        funcName: "fluid.stringTemplate",
+                                        args: [
+                                            "%url/../src/renderer-process/html/main-window.html",
+                                            "{app}.env.appRoot"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
 
         tester: {

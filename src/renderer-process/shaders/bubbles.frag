@@ -17,11 +17,20 @@ uniform float saturation[MAX_LAYERS];
 uniform sampler2D samplers[MAX_LAYERS];
 uniform vec2 textureSize;
 
+float clampUnipolar (float value) {
+    if (value < 0.0) {
+        value = 0.0;
+    }
+
+    return value;
+}
+
 float luma (vec3 fragment) {
     return dot(fragment, W);
 }
 
-vec3 brightnessContrast (vec3 fragment, float brightness, float contrast) {
+vec3 brightnessContrast (vec3 fragment, float brightness,
+    float contrast) {
     return (fragment - 0.5) * contrast + 0.5 + brightness;
 }
 
@@ -52,15 +61,18 @@ void main(void) {
         colour = brightnessContrast(colour, brightness[i], contrast[i]);
 
         // 2. Scale colour channels.
-        vec3 colourScale = vec3(redScale[i], greenScale[i],
-            blueScale[i]);
+        vec3 colourScale = vec3(
+            clampUnipolar(redScale[i]),
+            clampUnipolar(greenScale[i]),
+            clampUnipolar(blueScale[i]));
+
         colour = colour * colourScale;
 
         // 3. Apply saturation.
         colour = saturate(colour, saturation[i]);
 
         // 4. Adjust overall opacity
-        colour = colour * opacity[i];
+        colour = colour * clampUnipolar(opacity[i]);
 
         // 5. Apply luma key.
         // TODO: Add some smoothstepping.
@@ -69,10 +81,10 @@ void main(void) {
             // 6. Sum pixel with other layers if it isn't keyed out.
             layerSum = layerSum + colour;
         }
-
-        // 7. Apply gain to all layers.
-        layerSum = layerSum * gain;
     }
+
+    // 7. Apply gain to all layers.
+    layerSum = layerSum * clampUnipolar(gain);
 
     gl_FragColor = vec4(layerSum.r, layerSum.g, layerSum.b, 1.0);
 }

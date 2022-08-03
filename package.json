@@ -23,7 +23,7 @@
         "electron": "17.4.0",
         "electron-icon-builder": "2.0.1",
         "electron-packager": "15.4.0",
-        "fluid-lint-all": "1.1.5",
+        "fluid-lint-all": "1.2.2",
         "node-jqunit": "1.1.9"
     },
     "dependencies": {
