@@ -20,7 +20,7 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "20.0.1",
+        "electron": "22.3.25",
         "electron-icon-builder": "2.0.1",
         "electron-packager": "15.5.1",
         "fluid-lint-all": "1.2.2",
