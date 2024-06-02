@@ -20,14 +20,14 @@
     "readmeFilename": "README.md",
     "main": "main.js",
     "devDependencies": {
-        "electron": "20.0.1",
+        "electron": "30.0.9",
         "electron-icon-builder": "2.0.1",
-        "electron-packager": "15.5.1",
-        "fluid-lint-all": "1.2.2",
+        "@electron/packager": "18.3.2",
+        "fluid-lint-all": "1.2.11",
         "node-jqunit": "1.1.9"
     },
     "dependencies": {
-        "@electron/remote": "2.0.8",
+        "@electron/remote": "2.1.2",
         "aconite": "0.11.2",
         "flocking": "2.0.2",
         "fluid-binder": "1.1.2",
@@ -35,11 +35,11 @@
         "infusion-electron": "0.8.1",
         "kettle": "2.3.0",
         "normalize.css": "8.0.1",
-        "osc": "2.4.3"
+        "osc": "2.4.4"
     },
     "overrides": {
-        "jquery": "3.6.0",
-        "codemirror": "5.65.7"
+        "jquery": "3.7.1",
+        "codemirror": "5.65.16"
     },
     "scripts": {
         "lint": "fluid-lint-all",

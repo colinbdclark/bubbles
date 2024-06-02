@@ -38,6 +38,11 @@ fluid.defaults("bubbles.modulationMatrixView", {
         "volume"
     ],
 
+    midiCCModulationNames: [
+        "keyerMin",
+        "keyerMax"
+    ],
+
     model: {
         speed: 1.0,
         volume: "{videoLayerView}.video.model.volume"
@@ -87,6 +92,21 @@ fluid.defaults("bubbles.modulationMatrixView", {
                 layerIdx: "{modulationMatrixView}.options.layerIdx",
                 components: {
                     relaySource: "{oscSource}",
+                    relayTarget: "{modulationMatrixView}"
+                }
+            }
+        },
+
+        midiCCRelayer: {
+            type: "bubbles.midiCCRelayer",
+            sources: "{that}.options.midiCCModulationNames",
+            options: {
+                layerIdx: "{modulationMatrixView}.options.layerIdx",
+                modulationIdx: "{sourcePath}",
+                modulationName: "{source}",
+                allModulationNames: "{modulationMatrixView}.options.midiCCModulationNames",
+                components: {
+                    relaySource: "{midiManager}.midiSource",
                     relayTarget: "{modulationMatrixView}"
                 }
             }
